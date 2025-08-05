@@ -1,0 +1,166 @@
+/* About page styles */
+
+/* Hero Section */
+.about-hero {
+    background: linear-gradient(135deg, rgba(23, 162, 184, 0.9), rgba(19, 132, 150, 0.9)),
+        url('https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 120px 0 80px;
+}
+
+.min-vh-50 {
+    min-height: 50vh;
+}
+
+.hero-title {
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Cards */
+.mission-card,
+.vision-card,
+.value-card,
+.timeline-card {
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.mission-card:hover,
+.vision-card:hover,
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Icon Circles */
+.icon-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.icon-circle-lg {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+/* Timeline Styles */
+.timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--primary-color), var(--info));
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -22px;
+    top: 20px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.timeline-content {
+    margin-left: 30px;
+}
+
+.timeline-card:hover {
+    transform: translateX(10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Mission List */
+.mission-list li {
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.mission-list li:hover {
+    transform: translateX(5px);
+    color: var(--primary-color);
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Pillar Icons */
+.pillar-icon i {
+    transition: all 0.3s ease;
+}
+
+.pillar-icon:hover i {
+    transform: scale(1.1);
+}
+
+/* Value Cards Hover Effects */
+.value-card:hover .icon-circle-lg {
+    transform: scale(1.05);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .timeline {
+        padding-left: 20px;
+    }
+
+    .timeline::before {
+        left: 10px;
+    }
+
+    .timeline-marker {
+        left: -17px;
+    }
+
+    .timeline-content {
+        margin-left: 20px;
+    }
+}
