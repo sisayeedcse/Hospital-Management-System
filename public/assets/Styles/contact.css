@@ -1,0 +1,279 @@
+/* Page header section */
+.contact-header {
+    background-color: #f8f9fa;
+    padding: 60px 0;
+    margin-bottom: 50px;
+}
+
+.contact-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #2c5aa0;
+    margin-bottom: 20px;
+}
+
+.contact-subtitle {
+    font-size: 1.2rem;
+    color: #6c757d;
+    margin-bottom: 0;
+}
+
+/* Contact information section */
+.contact-info-section {
+    padding: 50px 0;
+    background-color: white;
+}
+
+.contact-info-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.contact-info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.contact-info-icon {
+    font-size: 3rem;
+    color: #2c5aa0;
+    margin-bottom: 25px;
+}
+
+.contact-info-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+.contact-info-details {
+    font-size: 1rem;
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+.contact-info-details p {
+    margin-bottom: 10px;
+}
+
+.contact-info-details a {
+    color: #2c5aa0;
+    text-decoration: none;
+}
+
+.contact-info-details a:hover {
+    color: #28a745;
+    text-decoration: underline;
+}
+
+/* Contact form section */
+.contact-form-section {
+    padding: 50px 0;
+    background-color: #f8f9fa;
+}
+
+.contact-form-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #343a40;
+    margin-bottom: 8px;
+}
+
+.form-control {
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #2c5aa0;
+    box-shadow: 0 0 0 0.2rem rgba(44, 90, 160, 0.25);
+}
+
+.contact-form-btn {
+    background-color: #2c5aa0;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.contact-form-btn:hover {
+    background-color: #1e3f73;
+    transform: translateY(-2px);
+}
+
+/* Office hours section */
+.office-hours-section {
+    padding: 50px 0;
+    background-color: white;
+}
+
+.hours-table {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 30px;
+    border: 1px solid #e9ecef;
+}
+
+.hours-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.hours-row:last-child {
+    border-bottom: none;
+}
+
+.hours-day {
+    font-weight: 600;
+    color: #343a40;
+    font-size: 1rem;
+}
+
+.hours-time {
+    color: #6c757d;
+    font-size: 1rem;
+}
+
+.hours-time.emergency {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+/* Map section */
+.map-section {
+    padding: 50px 0;
+    background-color: #f8f9fa;
+}
+
+.map-placeholder {
+    background-color: #e9ecef;
+    border: 2px dashed #6c757d;
+    border-radius: 10px;
+    padding: 100px 20px;
+    text-align: center;
+    color: #6c757d;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.location-info {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
+}
+
+.location-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.location-item:last-child {
+    margin-bottom: 0;
+}
+
+.location-icon {
+    font-size: 1.2rem;
+    color: #28a745;
+    margin-right: 15px;
+    min-width: 20px;
+}
+
+.location-text {
+    font-size: 1rem;
+    color: #6c757d;
+    margin: 0;
+}
+
+/* Section titles */
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #2c5aa0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #6c757d;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .contact-title {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .contact-header {
+        padding: 40px 0;
+        margin-bottom: 30px;
+    }
+
+    .contact-info-section,
+    .contact-form-section,
+    .office-hours-section,
+    .map-section {
+        padding: 30px 0;
+    }
+
+    .contact-form-container {
+        padding: 30px 20px;
+    }
+
+    .hours-row {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .hours-day {
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 576px) {
+    .location-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .location-icon {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}

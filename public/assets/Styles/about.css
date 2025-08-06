@@ -1,0 +1,221 @@
+/* Page header section */
+.about-header {
+    background-color: #f8f9fa;
+    padding: 60px 0;
+    margin-bottom: 50px;
+}
+
+.about-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #2c5aa0;
+    margin-bottom: 20px;
+}
+
+.about-subtitle {
+    font-size: 1.2rem;
+    color: #6c757d;
+    margin-bottom: 0;
+}
+
+/* Mission section */
+.mission-section {
+    padding: 50px 0;
+    background-color: white;
+}
+
+.mission-card {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 40px 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    border: 1px solid #e9ecef;
+    height: 100%;
+}
+
+.mission-icon {
+    font-size: 3rem;
+    color: #2c5aa0;
+    margin-bottom: 20px;
+}
+
+.mission-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #343a40;
+    margin-bottom: 15px;
+}
+
+.mission-text {
+    font-size: 1rem;
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+/* Story section */
+.story-section {
+    padding: 50px 0;
+    background-color: #f8f9fa;
+}
+
+.story-content {
+    font-size: 1.1rem;
+    color: #6c757d;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.story-image {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.story-placeholder {
+    background-color: #e9ecef;
+    border: 2px dashed #6c757d;
+    border-radius: 10px;
+    padding: 80px 20px;
+    color: #6c757d;
+    font-size: 1.1rem;
+}
+
+/* Team section */
+.team-section {
+    padding: 50px 0;
+    background-color: white;
+}
+
+.team-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.team-avatar {
+    width: 80px;
+    height: 80px;
+    background-color: #e9ecef;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #2c5aa0;
+}
+
+.team-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #343a40;
+    margin-bottom: 5px;
+}
+
+.team-role {
+    font-size: 1rem;
+    color: #28a745;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.team-description {
+    font-size: 0.9rem;
+    color: #6c757d;
+    line-height: 1.5;
+}
+
+/* Values section */
+.values-section {
+    padding: 50px 0;
+    background-color: #f8f9fa;
+}
+
+.value-item {
+    display: flex;
+    align-items: start;
+    margin-bottom: 30px;
+}
+
+.value-icon {
+    font-size: 2rem;
+    color: #28a745;
+    margin-right: 20px;
+    margin-top: 5px;
+}
+
+.value-content {
+    flex: 1;
+}
+
+.value-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #343a40;
+    margin-bottom: 10px;
+}
+
+.value-text {
+    font-size: 1rem;
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+/* Section titles */
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #2c5aa0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #6c757d;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .about-title {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .about-header {
+        padding: 40px 0;
+        margin-bottom: 30px;
+    }
+
+    .mission-section,
+    .story-section,
+    .team-section,
+    .values-section {
+        padding: 30px 0;
+    }
+
+    .value-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .value-icon {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+}
