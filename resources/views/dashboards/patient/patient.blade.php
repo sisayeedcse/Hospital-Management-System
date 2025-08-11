@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,34 +11,57 @@
 </head>
 <body>
     <!-- Top Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">Patient Dashboard</a>
-        <div class="ml-auto">
-            <span class="navbar-text text-white">Welcome, {{ Auth::user()->name ?? 'Patient' }}</span>
-        </div>
+    <nav class="navbar navbar-dark bg-primary px-4">
+        <a class="navbar-brand font-weight-bold" href="#">Patient Dashboard</a>
+        <span class="navbar-text text-white ml-auto">Welcome, {{ Auth::user()->name ?? 'Patient' }}</span>
     </nav>
 
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <nav id="sidebar" class="col-md-2 d-none d-md-block bg-light sidebar">
+            <nav id="sidebar" class="col-md-2 d-none d-md-block bg-light sidebar patient-sidebar">
                 <div class="sidebar-sticky pt-4">
                     <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('patient.appointments') }}">
-                                <span class="fa fa-calendar"></span> Appointments
+                        <li class="nav-item mb-2">
+                            <a class="nav-link" href="{{ route('patient.billing_payments') }}">
+                                <span class="fa fa-credit-card mr-2"></span> Billing & Payments
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('patient.prescriptions') }}">
-                                <span class="fa fa-file-medical"></span> Prescription
+                        <li class="nav-item mb-2">
+                            <a class="nav-link" href="{{ route('patient.book_appointments') }}">
+                                <span class="fa fa-calendar-plus mr-2"></span> Book Appointments
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="nav-link" href="{{ route('patient.complaints') }}">
+                                <span class="fa fa-exclamation-circle mr-2"></span> Complaints
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="nav-link" href="{{ route('patient.medical_history') }}">
+                                <span class="fa fa-notes-medical mr-2"></span> Medical History
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="nav-link" href="{{ route('patient.my_prescriptions') }}">
+                                <span class="fa fa-file-prescription mr-2"></span> My Prescriptions
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="nav-link" href="{{ route('patient.profile_settings') }}">
+                                <span class="fa fa-user-cog mr-2"></span> Profile Settings
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="nav-link" href="{{ route('patient.view_reports') }}">
+                                <span class="fa fa-file-alt mr-2"></span> View Reports
                             </a>
                         </li>
                         <li class="nav-item mt-4">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit" class="nav-link btn btn-link text-danger p-0">
-                                    <span class="fa fa-sign-out-alt"></span> Logout
+                                    <span class="fa fa-sign-out-alt mr-2"></span> Logout
                                 </button>
                             </form>
                         </li>
@@ -46,10 +70,10 @@
             </nav>
 
             <!-- Main Content -->
-            <main role="main" class="col-md-10 ml-sm-auto px-4">
-                <div class="pt-4">
-                    <h2>Welcome to your dashboard</h2>
-                    <p>Select an option from the sidebar to get started.</p>
+            <main role="main" class="col-md-10 ml-sm-auto px-4 patient-main-content">
+                <div class="pt-5">
+                    <h2 class="font-weight-bold">Welcome to your dashboard</h2>
+                    <p class="text-muted">Select an option from the sidebar to get started.</p>
                 </div>
             </main>
         </div>
