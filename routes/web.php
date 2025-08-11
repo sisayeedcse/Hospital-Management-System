@@ -30,3 +30,13 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('authPages.register');
 });
+
+Route::get('/patient', function () {
+    return view('dashboards.patient.patient');
+});
+Route::get('/patient', function () {
+    return view('dashboards.patient.appintments');
+});
+Route::get('/patient', function () {
+    return view('dashboards.patient.prescriptions');
+});
