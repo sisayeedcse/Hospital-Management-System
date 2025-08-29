@@ -39,3 +39,6 @@ Route::get('/patient', function () {
     return view('dashboards.patient.patient');
 });
 
+Route::get('/admin', function () {
+    return view('dashboards.admin.admin');
+});
