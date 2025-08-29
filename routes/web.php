@@ -30,6 +30,12 @@ Route::get('/register', function () {
     return view('authPages.register');
 });
 
+
+Route::get('/doctor/dashboard', function () {
+    return view('dashboards.doctor.doctor');
+});
+
 Route::get('/patient', function () {
     return view('dashboards.patient.patient');
 });
+
