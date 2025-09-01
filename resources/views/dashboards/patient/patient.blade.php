@@ -18,7 +18,7 @@
             <li onclick="showSection('prescriptions')"><i class="fa-solid fa-prescription"></i> Prescriptions</li>
             <li onclick="showSection('billing')"><i class="fa-solid fa-credit-card"></i> Billing & Payments</li>
             <li onclick="showSection('settings')"><i class="fa-solid fa-gear"></i> Settings</li>
-            <li onclick="showLogoutModal()"><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
+            <li onclick="showSection('logout')"><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
         </ul>
     </div>
 
@@ -33,7 +33,7 @@
             <img src="{{ asset('patient_profile.jpg') }}" alt="Patient Profile" class="profile-img">
         </div>
 
-        <!-- Dashboard Section -->
+        <!-- Dashboard -->
         <div id="dashboard" class="section">
             <div class="welcome-message">
                 <h1>Hi, {{ $patientName ?? 'Shahin' }}</h1>
@@ -50,11 +50,10 @@
                         <th>Sl</th>
                         <th>Doctor Name</th>
                         <th>Specialization</th>
+                        <th>Contact</th>
                         <th>Appointment Date</th>
                         <th>Time</th>
                         <th>Status</th>
-                        <th>Contact</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,380 +61,200 @@
                         <td>1</td>
                         <td>Dr. Jahidur Rahman</td>
                         <td>Cardiologist</td>
+                        <td>01700000000</td>
                         <td>20-Aug-2025</td>
                         <td>10:30 AM</td>
                         <td><span class="status pending">Pending</span></td>
-                        <td>01700000000</td>
-                        <td>
-                            <button class="btn-accept">Accept</button>
-                            <button class="btn-decline">Decline</button>
-                            <button class="btn-reschedule">Reschedule</button>
-                        </td>
                     </tr>
+
                     <tr>
                         <td>2</td>
+                        <td>Dr. Jahidur Rahman</td>
+                        <td>Cardiologist</td>
+                        <td>01700000000</td>
+                        <td>20-Aug-2025</td>
+                        <td>10:30 AM</td>
+                        <td><span class="status pending">Pending</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>Dr. Jahidur Rahman</td>
+                        <td>Cardiologist</td>
+                        <td>01700000000</td>
+                        <td>20-Aug-2025</td>
+                        <td>10:30 AM</td>
+                        <td><span class="status pending">Pending</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td>Dr. Jahidur Rahman</td>
+                        <td>Cardiologist</td>
+                        <td>01700000000</td>
+                        <td>20-Aug-2025</td>
+                        <td>10:30 AM</td>
+                        <td><span class="status pending">Pending</span></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
                         <td>Dr. Sayeed Ibne</td>
                         <td>Orthopedic</td>
+                        <td>01800000000</td>
                         <td>21-Aug-2025</td>
                         <td>02:00 PM</td>
                         <td><span class="status confirmed">Confirmed</span></td>
-                        <td>01800000000</td>
-                        <td>
-                            <button class="btn-accept">Accept</button>
-                            <button class="btn-decline">Decline</button>
-                            <button class="btn-reschedule">Reschedule</button>
-                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <!-- Reports Section -->
+        <!-- Medical Reports -->
         <div id="reports" class="section" style="display: none;">
             <h3>Medical Reports</h3>
-            <!-- Patient Information -->
             <div class="report-card">
-                <h4>Patient Information</h4>
-                <table class="report-table">
-                    <tr><th>Patient ID</th><td>PAT-1023</td></tr>
-                    <tr><th>Name</th><td>Shahin Talukdar</td></tr>
-                    <tr><th>Age</th><td>27</td></tr>
-                    <tr><th>Gender</th><td>Male</td></tr>
-                    <tr><th>Blood Group</th><td>O+</td></tr>
-                </table>
+                <h4>Chest X-Ray</h4>
+                <p class="report-meta">Date: 20-Aug-2025 | Doctor: Dr. Jahidur Rahman</p>
+                <div class="report-actions">
+                    <button class="btn-download"><i class="fa-solid fa-download"></i> Download</button>
+                    <button class="btn-print"><i class="fa-solid fa-print"></i> Print</button>
+                </div>
+            </div>
+            <div class="report-card">
+                <h4>Blood Test</h4>
+                <p class="report-meta">Date: 21-Aug-2025 | Doctor: Dr. Sayeed Ibne</p>
+                <div class="report-actions">
+                    <button class="btn-download"><i class="fa-solid fa-download"></i> Download</button>
+                    <button class="btn-print"><i class="fa-solid fa-print"></i> Print</button>
+                </div>
             </div>
 
-            <!-- Doctor Information -->
             <div class="report-card">
-                <h4>Doctor Information</h4>
-                <table class="report-table">
-                    <tr><th>Doctor Name</th><td>Dr. Jahidur Rahman</td></tr>
-                    <tr><th>Specialization</th><td>Cardiologist</td></tr>
-                    <tr><th>Visit Date</th><td>15-Aug-2025</td></tr>
-                </table>
+                <h4>Blood Test</h4>
+                <p class="report-meta">Date: 21-Aug-2025 | Doctor: Dr. Sayeed Ibne</p>
+                <div class="report-actions">
+                    <button class="btn-download"><i class="fa-solid fa-download"></i> Download</button>
+                    <button class="btn-print"><i class="fa-solid fa-print"></i> Print</button>
+                </div>
             </div>
 
-            <!-- Diagnosis -->
             <div class="report-card">
-                <h4>Diagnosis</h4>
-                <p>Patient is experiencing chest pain and shortness of breath. Possible angina. Further tests advised.</p>
+                <h4>Blood Test</h4>
+                <p class="report-meta">Date: 21-Aug-2025 | Doctor: Dr. Sayeed Ibne</p>
+                <div class="report-actions">
+                    <button class="btn-download"><i class="fa-solid fa-download"></i> Download</button>
+                    <button class="btn-print"><i class="fa-solid fa-print"></i> Print</button>
+                </div>
             </div>
+        </div>
 
-            <!-- Lab Test Results -->
-            <div class="report-card">
-                <h4>Lab Test Results</h4>
-                <table class="report-table">
-                    <thead>
-                        <tr>
-                            <th>Test Name</th>
-                            <th>Result</th>
-                            <th>Reference Range</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Blood Sugar (Fasting)</td>
-                            <td>115 mg/dl</td>
-                            <td>70 - 110 mg/dl</td>
-                        </tr>
-                        <tr>
-                            <td>Cholesterol</td>
-                            <td>220 mg/dl</td>
-                            <td>< 200 mg/dl</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Prescribed Medicines -->
-            <div class="report-card">
-                <h4>Prescribed Medicines</h4>
+        <!-- Prescriptions -->
+        <div id="prescriptions" class="section" style="display: none;">
+            <h3>Prescriptions</h3>
+            <div class="prescription-card">
+                <h4>Prescription by Dr. Jahidur Rahman</h4>
                 <ul class="medicine-list">
-                    <li>Aspirin 75mg – 1 tablet daily</li>
-                    <li>Atorvastatin 10mg – 1 tablet at night</li>
-                    <li>Metoprolol 25mg – 2 times daily</li>
+                    <li>Aspirin 75mg - 1 tablet daily</li>
+                    <li>Atorvastatin 10mg - 1 tablet at night</li>
+                    <li>Vitamin D - Once a week</li>
+                </ul>
+            </div>
+            <div class="prescription-card">
+                <h4>Prescription by Dr. Sayeed Ibne</h4>
+                <ul class="medicine-list">
+                    <li>Calcium 500mg - After lunch</li>
+                    <li>Diclofenac - If pain persists</li>
                 </ul>
             </div>
 
-            <!-- Follow-up -->
-            <div class="report-card">
-                <h4>Follow-up</h4>
-                <p>Next Appointment: <strong>30-Aug-2025</strong></p>
-                <p>Special Advice: Low fat diet, regular walking, avoid smoking.</p>
+            <div class="prescription-card">
+                <h4>Prescription by Dr. Sayeed Ibne</h4>
+                <ul class="medicine-list">
+                    <li>Calcium 500mg - After lunch</li>
+                    <li>Diclofenac - If pain persists</li>
+                </ul>
             </div>
-
-            <!-- Download/Print -->
-            <div class="report-actions">
-                <button class="btn-download"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
-                <button class="btn-print"><i class="fa-solid fa-print"></i> Print Report</button>
+            <div class="prescription-card">
+                <h4>Prescription by Dr. Sayeed Ibne</h4>
+                <ul class="medicine-list">
+                    <li>Calcium 500mg - After lunch</li>
+                    <li>Diclofenac - If pain persists</li>
+                </ul>
             </div>
         </div>
 
-        <!-- Prescriptions Section -->
-        <div id="prescriptions" class="section" style="display: none;">
-            <h3>Prescriptions</h3>
-            <table class="prescription-table">
-                <thead>
-                    <tr>
-                        <th>Sl</th>
-                        <th>Prescription ID</th>
-                        <th>Doctor Name</th>
-                        <th>Date</th>
-                        <th>Diagnosis</th>
-                        <th>Medicines</th>
-                        <th>Next Visit</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>PRE-001</td>
-                        <td>Dr. Jahidur Rahman</td>
-                        <td>15-Aug-2025</td>
-                        <td>Chest Pain, Angina</td>
-                        <td>Aspirin 75mg (1x daily), Atorvastatin 10mg (1x night)</td>
-                        <td>30-Aug-2025</td>
-                        <td>
-                            <button class="btn-view">View</button>
-                            <button class="btn-download">Download</button>
-                            <button class="btn-print">Print</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>PRE-002</td>
-                        <td>Dr. Sayeed Ibne</td>
-                        <td>10-Aug-2025</td>
-                        <td>Joint Pain</td>
-                        <td>Ibuprofen 400mg (2x daily), Calcium (1x daily)</td>
-                        <td>25-Aug-2025</td>
-                        <td>
-                            <button class="btn-view">View</button>
-                            <button class="btn-download">Download</button>
-                            <button class="btn-print">Print</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Billing Section -->
+        <!-- Billing -->
         <div id="billing" class="section" style="display: none;">
             <h3>Billing & Payments</h3>
-            <table class="billing-table">
+            <table class="appointment-table">
                 <thead>
                     <tr>
-                        <th>Invoice Number</th>
-                        <th>Date</th>
-                        <th>Service/Procedure</th>
-                        <th>Doctor Charges</th>
-                        <th>Lab Charges</th>
-                        <th>Medicine Charges</th>
-                        <th>Total Bill</th>
-                        <th>Payment Status</th>
-                        <th>Payment Method</th>
-                        <th>Action</th>
+                        <th>Invoice</th>
+                        <th>Amount</th>
+                        <th>Status</th>
                     </tr>
+
+                    
                 </thead>
                 <tbody>
                     <tr>
                         <td>INV-001</td>
-                        <td>15-Aug-2025</td>
-                        <td>Cardiology Consultation</td>
-                        <td>৳1,500</td>
-                        <td>৳800</td>
-                        <td>৳450</td>
                         <td>৳2,750</td>
-                        <td><span class="status paid">Paid</span></td>
-                        <td>Mobile Banking</td>
-                        <td>
-                            <button class="btn-download">Download Invoice</button>
-                            <button class="btn-print">Print Receipt</button>
-                        </td>
+                        <td><span class="status confirmed">Paid</span></td>
                     </tr>
                     <tr>
                         <td>INV-002</td>
-                        <td>10-Aug-2025</td>
-                        <td>Orthopedic Consultation</td>
-                        <td>৳1,200</td>
-                        <td>৳0</td>
-                        <td>৳300</td>
                         <td>৳1,500</td>
                         <td><span class="status pending">Pending</span></td>
-                        <td>-</td>
-                        <td>
-                            <button class="btn-pay">Pay Now</button>
-                            <button class="btn-download">Download Invoice</button>
-                        </td>
+                    </tr>
+                    <tr>
+                        <td>INV-002</td>
+                        <td>৳1,500</td>
+                        <td><span class="status pending">Pending</span></td>
+                    </tr>
+                    <tr>
+                        <td>INV-002</td>
+                        <td>৳1,500</td>
+                        <td><span class="status pending">Pending</span></td>
+                    </tr>
+                    <tr>
+                        <td>INV-002</td>
+                        <td>৳1,500</td>
+                        <td><span class="status pending">Pending</span></td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <!-- Settings Section -->
+        <!-- Settings -->
         <div id="settings" class="section" style="display: none;">
             <h3>Settings</h3>
-            
-            <!-- Profile Settings -->
-            <div class="settings-card">
-                <h4>Profile Settings</h4>
-                <div class="setting-item">
-                    <label>Name:</label>
-                    <input type="text" value="Shahin Talukdar" class="setting-input">
-                    <button class="btn-edit">Edit</button>
-                </div>
-                <div class="setting-item">
-                    <label>Email:</label>
-                    <input type="email" value="shahin@example.com" class="setting-input">
-                    <button class="btn-edit">Edit</button>
-                </div>
-                <div class="setting-item">
-                    <label>Phone Number:</label>
-                    <input type="tel" value="01700000000" class="setting-input">
-                    <button class="btn-edit">Edit</button>
-                </div>
-                <div class="setting-item">
-                    <label>Gender:</label>
-                    <select class="setting-select">
-                        <option value="male" selected>Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="setting-item">
-                    <label>Date of Birth:</label>
-                    <input type="date" value="1998-01-01" class="setting-input">
-                </div>
-                <div class="setting-item">
-                    <label>Address:</label>
-                    <textarea class="setting-textarea">Chattogram, Bangladesh</textarea>
-                    <button class="btn-edit">Edit</button>
-                </div>
-            </div>
+            <form class="settings-form">
+                <label>Name:</label>
+                <input type="text" placeholder="Update Name">
+                <label>Email:</label>
+                <input type="email" placeholder="Update Email">
+                <label>Phone:</label>
+                <input type="text" placeholder="Update Phone">
+                <label>Password:</label>
+                <input type="password" placeholder="New Password">
+                <button type="submit" class="btn-accept">Save Changes</button>
+            </form>
+        </div>
 
-            <!-- Account Settings -->
-            <div class="settings-card">
-                <h4>Account Settings</h4>
-                <div class="setting-item">
-                    <label>Change Username:</label>
-                    <input type="text" value="shahin123" class="setting-input">
-                    <button class="btn-update">Update</button>
-                </div>
-                <div class="setting-item">
-                    <label>Change Password:</label>
-                    <input type="password" placeholder="New Password" class="setting-input">
-                    <button class="btn-update">Update</button>
-                </div>
-                
-            </div>
-
-            <!-- Medical Preferences -->
-            <div class="settings-card">
-                <h4>Medical Preferences</h4>
-                <div class="setting-item">
-                    <label>Preferred Doctor:</label>
-                    <select class="setting-select">
-                        <option value="">Select Doctor</option>
-                        <option value="dr-jahidur">Dr. Jahidur Rahman</option>
-                        <option value="dr-sayeed">Dr. Sayeed Ibne</option>
-                    </select>
-                </div>
-                <div class="setting-item">
-                    <label>Preferred Department:</label>
-                    <select class="setting-select">
-                        <option value="">Select Department</option>
-                        <option value="cardiology">Cardiology</option>
-                        <option value="orthopedic">Orthopedic</option>
-                        <option value="general">General Medicine</option>
-                    </select>
-                </div>
-            </div>
-
-            
-
-            <!-- Privacy & Security -->
-            <div class="settings-card">
-                <h4>Privacy & Security</h4>
-                <div class="setting-item">
-                    <label>Who can view my reports:</label>
-                    <select class="setting-select">
-                        <option value="me">Only Me</option>
-                        <option value="doctor" selected>My Doctor & Me</option>
-                        <option value="family">Family Members</option>
-                    </select>
-                </div>
-                <div class="setting-item">
-                    <button class="btn-download">Download My Data</button>
-                    <span class="setting-description">Export all your medical data</span>
-                </div>
-                <div class="setting-item">
-                    <button class="btn-delete">Delete Account</button>
-                    <span class="setting-description">Permanently delete your account</span>
-                </div>
-            </div>
-
-            <!-- System Preferences -->
-            <div class="settings-card">
-                <h4>System Preferences</h4>
-                <div class="setting-item">
-                    <label>Language:</label>
-                    <select class="setting-select">
-                        <option value="en" selected>English</option>
-                        <option value="bn">বাংলা</option>
-                    </select>
-                </div>
-                <div class="setting-item">
-                    <label>Theme:</label>
-                    <select class="setting-select">
-                        <option value="light" selected>Light Mode</option>
-                        <option value="dark">Dark Mode</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="settings-actions">
-                <button class="btn-save">Save All Changes</button>
-                <button class="btn-cancel">Cancel</button>
-            </div>
+        <!-- Logout -->
+        <div id="logout" class="section" style="display: none;">
+            <h3>Are you sure you want to logout?</h3>
+            <button class="btn-decline">Cancel</button>
+            <button class="btn-accept">Logout</button>
         </div>
     </div>
 
-    <!-- Logout Confirmation Modal -->
-    <div id="logoutModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <h4>Confirm Logout</h4>
-            <p>Are you sure you want to log out?</p>
-            <div class="modal-buttons">
-                <button class="btn-confirm" onclick="confirmLogout()">Confirm</button>
-                <button class="btn-cancel" onclick="hideLogoutModal()">Cancel</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- JavaScript for Section Switching -->
     <script>
         function showSection(sectionId) {
-            document.querySelectorAll('.section').forEach(function(section) {
-                section.style.display = 'none';
-            });
+            document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
             document.getElementById(sectionId).style.display = 'block';
         }
-
-        function showLogoutModal() {
-            document.getElementById('logoutModal').style.display = 'flex';
-        }
-
-        function hideLogoutModal() {
-            document.getElementById('logoutModal').style.display = 'none';
-        }
-
-        function confirmLogout() {
-            // Add logout functionality here
-            alert('Logging out...');
-            // Redirect to login page
-            // window.location.href = '/login';
-        }
     </script>
-    </body>
+</body>
 </html>
