@@ -31,7 +31,7 @@ Route::get('/register', function () {
 });
 
 
-Route::get('/doctor/dashboard', function () {
+Route::get('/doctor', function () {
     return view('dashboards.doctor.doctor');
 });
 
