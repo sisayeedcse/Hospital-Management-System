@@ -40,3 +40,6 @@ Route::get('/patient', function () {
     return view('dashboards.patient.patient');
 });
 
+Route::get('/staff', function () {
+    return view('dashboards.staff.staff');
+});
