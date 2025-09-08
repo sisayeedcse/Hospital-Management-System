@@ -35,7 +35,7 @@ class LoginController extends Controller
                 case 'patient':
                     return redirect('/patient');
                 default:
-                    return redirect('/dashboard');
+                    return redirect('/');
             }
         }
 

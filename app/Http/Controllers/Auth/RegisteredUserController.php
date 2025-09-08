@@ -67,7 +67,7 @@ class RegisteredUserController extends Controller
                 break;
         }
 
-        Auth::login($user);
-        return redirect('/login');
+        // After registration, redirect to login page
+        return redirect('/login')->with('success', 'Account created successfully! Please log in.');
     }
 }

@@ -117,38 +117,119 @@ $menu = [
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>John Doe</td>
-                                <td>john@example.com</td>
-                                <td>Doctor</td>
-                                <td><button class="btn btn-sm btn-primary">Edit</button> <button
-                                        class="btn btn-sm btn-danger">Delete</button></td>
-                            </tr>
-                            <tr>
-                                <td>Jane Smith</td>
-                                <td>jane@example.com</td>
-                                <td>Patient</td>
-                                <td><button class="btn btn-sm btn-primary">Edit</button> <button
-                                        class="btn btn-sm btn-danger">Delete</button></td>
-                            </tr>
+                            @foreach($users as $user)
+                                <tr>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->role }}</td>
+                                    <td>
+                                        <a href="/admin/users/edit/{{ $user->id }}" class="btn btn-sm btn-primary">Edit</a>
+                                        <form action="/admin/users/delete/{{ $user->id }}" method="POST"
+                                            style="display:inline-block;">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                     <?php elseif ($page === 'doctors'): ?>
                     <!-- Doctors section -->
                     <h3>Doctors</h3>
                     <p>List of all doctors.</p>
-                    <ul>
-                        <li>Dr. Jahidur Rahman</li>
-                        <li>Dr. Sayeed Ibne</li>
-                    </ul>
+                    <table class="table table-bordered mt-3">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Specialty</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($doctors as $doctor)
+                                <tr>
+                                    <td>{{ $doctor->name }}</td>
+                                    <td>{{ $doctor->email }}</td>
+                                    <td>{{ $doctor->specialty }}</td>
+                                    <td>
+                                        <a href="/admin/doctors/edit/{{ $doctor->id }}"
+                                            class="btn btn-sm btn-primary">Edit</a>
+                                        <form action="/admin/doctors/delete/{{ $doctor->id }}" method="POST"
+                                            style="display:inline-block;">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                     <?php elseif ($page === 'patients'): ?>
                     <!-- Patients section -->
                     <h3>Patients</h3>
                     <p>List of all patients.</p>
-                    <ul>
-                        <li>Umme Hafsa</li>
-                        <li>Umme Nadia</li>
-                    </ul>
+                    <table class="table table-bordered mt-3">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Gender</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($patients as $patient)
+                                <tr>
+                                    <td>{{ $patient->name }}</td>
+                                    <td>{{ $patient->email }}</td>
+                                    <td>{{ $patient->gender }}</td>
+                                    <td>
+                                        <a href="/admin/patients/edit/{{ $patient->id }}"
+                                            class="btn btn-sm btn-primary">Edit</a>
+                                        <form action="/admin/patients/delete/{{ $patient->id }}" method="POST"
+                                            style="display:inline-block;">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <?php elseif ($page === 'staffs'): ?>
+                    <!-- Staff section -->
+                    <h3>Staff</h3>
+                    <p>List of all staff.</p>
+                    <table class="table table-bordered mt-3">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Position</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($staffs as $staff)
+                                <tr>
+                                    <td>{{ $staff->name }}</td>
+                                    <td>{{ $staff->email }}</td>
+                                    <td>{{ $staff->position }}</td>
+                                    <td>
+                                        <a href="/admin/staffs/edit/{{ $staff->id }}"
+                                            class="btn btn-sm btn-primary">Edit</a>
+                                        <form action="/admin/staffs/delete/{{ $staff->id }}" method="POST"
+                                            style="display:inline-block;">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                     <?php elseif ($page === 'appointments'): ?>
                     <!-- Appointments section -->
                     <h3>Appointments</h3>

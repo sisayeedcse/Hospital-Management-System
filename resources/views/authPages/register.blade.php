@@ -37,7 +37,7 @@
                         <h2 class="register-form-title">Create Account</h2>
                         <p class="register-form-subtitle">Fill out the form below to get started</p>
 
-                        <form method="POST" action="#" id="registerForm">
+                        <form method="POST" action="/register" id="registerForm">
                             @csrf
 
                             <!-- Name Fields -->
