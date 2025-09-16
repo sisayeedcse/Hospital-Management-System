@@ -40,24 +40,3 @@ Route::get('/doctor', function () {
 Route::get('/patient', function () {
     return view('dashboards.patient.patient');
 });
-<<<<<<< HEAD
-=======
-
-use App\Http\Controllers\DashboardController;
-Route::get('/admin', [DashboardController::class, 'adminDashboard']);
-
-// Doctor Edit/Delete
-Route::get('/admin/doctors/edit/{id}', [DashboardController::class, 'editDoctor']);
-Route::post('/admin/doctors/edit/{id}', [DashboardController::class, 'updateDoctor']);
-Route::post('/admin/doctors/delete/{id}', [DashboardController::class, 'deleteDoctor']);
-
-// Patient Edit/Delete
-Route::get('/admin/patients/edit/{id}', [DashboardController::class, 'editPatient']);
-Route::post('/admin/patients/edit/{id}', [DashboardController::class, 'updatePatient']);
-Route::post('/admin/patients/delete/{id}', [DashboardController::class, 'deletePatient']);
-
-Route::get('/staff', function () {
-    return view('dashboards.staff.staff');
-});
-
->>>>>>> f032de94ef6d5cfd34d9494c3e102947f6ac96e3
