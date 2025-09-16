@@ -37,7 +37,7 @@
                         <h2 class="register-form-title">Create Account</h2>
                         <p class="register-form-subtitle">Fill out the form below to get started</p>
 
-                        <form method="POST" action="#" id="registerForm">
+                        <form method="POST" action="/register" id="registerForm">
                             @csrf
 
                             <!-- Name Fields -->
@@ -101,13 +101,13 @@
 
                             <!-- User Role -->
                             <div class="form-group">
-                                <label for="user_type">I am a</label>
-                                <select class="form-control" id="user_type" name="user_type" required>
+                                <label for="role">I am a</label>
+                                <select class="form-control" id="role" name="role" required>
                                     <option value="">Select your role</option>
-                                    <option value="patient">Patient</option>
+                                    <option value="admin">Admin</option>
                                     <option value="doctor">Doctor</option>
-                                    <option value="nurse">Nurse</option>
-                                    <option value="admin">Administrator</option>
+                                    <option value="staff">Staff</option>
+                                    <option value="patient">Patient</option>
                                 </select>
                             </div>
 

@@ -23,23 +23,20 @@ Route::get('/contact', function () {
     return view('publicPages.contact');
 });
 
-Route::get('/login', function () {
-    return view('authPages.login');
-});
+use App\Http\Controllers\Auth\LoginController;
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/register', function () {
-    return view('authPages.register');
-});
+use App\Http\Controllers\Auth\RegisteredUserController;
+Route::get('/register', [RegisteredUserController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisteredUserController::class, 'register']);
 
 
-Route::get('/doctor/dashboard', function () {
+Route::get('/doctor', function () {
     return view('dashboards.doctor.doctor');
 });
 
 Route::get('/patient', function () {
     return view('dashboards.patient.patient');
-});
-
-Route::get('/staff', function () {
-    return view('dashboards.staff.staff');
 });
