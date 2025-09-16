@@ -20,140 +20,6 @@ function showNotification(message = 'Saved Successfully') {
     setTimeout(() => notification.classList.remove('show'), 3000);
 }
 
-function switchTab(tabName) {
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-    document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
-    document.getElementById(`${tabName}-tab`).classList.add('active');
-}
-
-function acceptAppointment(button) {
-    const row = button.closest('.row');
-    const patientName = row.querySelector('.col-3').textContent;
-    const diagnosis = row.querySelectorAll('.col-3')[1].textContent;
-    const contact = row.querySelectorAll('.col-3')[2].textContent;
-    
-    if (confirm(`Are you sure you want to accept the appointment for ${patientName}?`)) {
-        moveAppointmentToTab(row, 'accepted', patientName, diagnosis, contact);
-        showNotification('Appointment accepted successfully!');
-    }
-}
-
-function declineAppointment(button) {
-    const row = button.closest('.row');
-    const patientName = row.querySelector('.col-3').textContent;
-    const diagnosis = row.querySelectorAll('.col-3')[1].textContent;
-    const contact = row.querySelectorAll('.col-3')[2].textContent;
-    
-    if (confirm(`Are you sure you want to decline the appointment for ${patientName}?`)) {
-        moveAppointmentToTab(row, 'deleted', patientName, diagnosis, contact);
-        showNotification('Appointment declined successfully!');
-    }
-}
-
-function cancelAppointment(button) {
-    const row = button.closest('.row');
-    const patientName = row.querySelector('.col-3').textContent;
-    const diagnosis = row.querySelectorAll('.col-3')[1].textContent;
-    const contact = row.querySelectorAll('.col-3')[2].textContent;
-    
-    if (confirm(`Are you sure you want to cancel the appointment for ${patientName}?`)) {
-        moveAppointmentToTab(row, 'deleted', patientName, diagnosis, contact);
-        showNotification('Appointment cancelled successfully!');
-    }
-}
-
-function doneAppointment(button) {
-    const row = button.closest('.row');
-    const patientName = row.querySelector('.col-3').textContent;
-    
-    if (confirm(`Are you sure you want to mark the appointment for ${patientName} as done?`)) {
-        row.remove();
-        showNotification('Appointment completed successfully!');
-        checkEmptyTab('accepted');
-    }
-}
-
-function revokeAppointment(button) {
-    const row = button.closest('.row');
-    const patientName = row.querySelector('.col-3').textContent;
-    const diagnosis = row.querySelectorAll('.col-3')[1].textContent;
-    const contact = row.querySelectorAll('.col-3')[2].textContent;
-    
-    if (confirm(`Are you sure you want to revoke the appointment for ${patientName}?`)) {
-        moveAppointmentToTab(row, 'requests', patientName, diagnosis, contact);
-        showNotification('Appointment revoked successfully!');
-    }
-}
-
-function moveAppointmentToTab(sourceRow, targetTab, patientName, diagnosis, contact) {
-    sourceRow.remove();
-    
-    const targetTabContent = document.getElementById(`${targetTab}-tab`);
-    const targetTable = targetTabContent.querySelector('.appointment-table-full');
-    
-    removeEmptyMessage(targetTab);
-    
-    const newRow = document.createElement('div');
-    newRow.className = 'row align-items-center mb-2';
-    
-    let actionButtons = '';
-    if (targetTab === 'accepted') {
-        actionButtons = `
-            <div class="col-3 d-flex justify-content-start gap-2">
-                <button class="btn btn-success btn-sm" onclick="doneAppointment(this)">Done</button>
-                <button class="btn btn-danger btn-sm" onclick="cancelAppointment(this)">Cancel</button>
-            </div>
-        `;
-    } else if (targetTab === 'deleted') {
-        actionButtons = `
-            <div class="col-3 d-flex justify-content-start gap-2">
-                <button class="btn btn-secondary btn-sm" onclick="revokeAppointment(this)">Revoke</button>
-            </div>
-        `;
-    } else if (targetTab === 'requests') {
-        actionButtons = `
-            <div class="col-3 d-flex justify-content-start gap-2">
-                <button class="btn btn-success btn-sm" onclick="acceptAppointment(this)">Accept</button>
-                <button class="btn btn-danger btn-sm" onclick="declineAppointment(this)">Decline</button>
-            </div>
-        `;
-    }
-    
-    newRow.innerHTML = `
-        <div class="col-3">${patientName}</div>
-        <div class="col-3">${diagnosis}</div>
-        <div class="col-3">${contact}</div>
-        ${actionButtons}
-    `;
-    
-    const headerRow = targetTable.querySelector('.appointment-header-row');
-    headerRow.parentNode.insertBefore(newRow, headerRow.nextSibling);
-    
-    const sourceTab = sourceRow.closest('.tab-content').id.replace('-tab', '');
-    checkEmptyTab(sourceTab);
-}
-
-function checkEmptyTab(tabName) {
-    const tabContent = document.getElementById(`${tabName}-tab`);
-    const table = tabContent.querySelector('.appointment-table-full');
-    const dataRows = table.querySelectorAll('.row:not(.appointment-header-row)');
-    
-    if (dataRows.length === 0) {
-        const emptyMessage = document.createElement('div');
-        emptyMessage.className = 'text-center text-muted py-4';
-        emptyMessage.innerHTML = `<i class="fas fa-inbox fa-2x mb-2"></i><br>No ${tabName} appointments found`;
-        table.appendChild(emptyMessage);
-    }
-}
-
-function removeEmptyMessage(tabName) {
-    const tabContent = document.getElementById(`${tabName}-tab`);
-    const emptyMessage = tabContent.querySelector('.text-center.text-muted');
-    if (emptyMessage) {
-        emptyMessage.remove();
-    }
-}
 
 // Report functions
 function showReport(reportType) {
@@ -496,18 +362,215 @@ function showNotification(message = 'Saved Successfully', type = 'success') {
     setTimeout(() => notification.classList.remove('show'), 3000);
 }
 
+// Time Schedule Functions
+let schedules = [
+    { id: 1, date: '15/09/2025', startTime: '06:00 PM', endTime: '10:00 PM', slot: '15 minutes' },
+    { id: 2, date: '16/09/2025', startTime: '07:00 PM', endTime: '09:00 PM', slot: '10 minutes' },
+    { id: 3, date: '17/09/2025', startTime: '04:00 PM', endTime: '08:00 PM', slot: '20 minutes' }
+];
+
+let editingScheduleId = null;
+
+function saveSchedule() {
+    const date = document.getElementById('scheduleDate').value;
+    const slotDuration = document.getElementById('slotDuration').value;
+    const startTime = document.getElementById('startTime').value;
+    const endTime = document.getElementById('endTime').value;
+    
+    // Clear previous errors
+    clearScheduleErrors();
+    
+    // Validation
+    if (!date) {
+        showScheduleError('scheduleDate', 'Please select a date');
+        return;
+    }
+    
+    if (!slotDuration) {
+        showScheduleError('slotDuration', 'Please select slot duration');
+        return;
+    }
+    
+    if (!startTime) {
+        showScheduleError('startTime', 'Please select start time');
+        return;
+    }
+    
+    if (!endTime) {
+        showScheduleError('endTime', 'Please select end time');
+        return;
+    }
+    
+    // Check if start time is before end time
+    if (startTime >= endTime) {
+        showScheduleError('endTime', 'End time must be after start time');
+        return;
+    }
+    
+    // Format date for display
+    const formattedDate = formatDateForDisplay(date);
+    const slotText = slotDuration + ' minutes';
+    
+    if (editingScheduleId) {
+        // Update existing schedule
+        const scheduleIndex = schedules.findIndex(s => s.id === editingScheduleId);
+        if (scheduleIndex !== -1) {
+            schedules[scheduleIndex] = {
+                id: editingScheduleId,
+                date: formattedDate,
+                startTime: startTime,
+                endTime: endTime,
+                slot: slotText
+            };
+            showNotification('Schedule updated successfully');
+        }
+        editingScheduleId = null;
+    } else {
+        // Add new schedule
+        const newId = Math.max(...schedules.map(s => s.id), 0) + 1;
+        schedules.push({
+            id: newId,
+            date: formattedDate,
+            startTime: startTime,
+            endTime: endTime,
+            slot: slotText
+        });
+        showNotification('Schedule saved successfully');
+    }
+    
+    // Clear form
+    clearScheduleForm();
+    
+    // Refresh table
+    renderScheduleTable();
+}
+
+function editSchedule(button) {
+    const row = button.closest('tr');
+    const cells = row.querySelectorAll('td');
+    
+    const date = cells[0].textContent;
+    const startTime = cells[1].textContent;
+    const endTime = cells[2].textContent;
+    const slot = cells[3].textContent;
+    
+    // Find the schedule ID
+    const scheduleId = parseInt(row.getAttribute('data-schedule-id'));
+    editingScheduleId = scheduleId;
+    
+    // Populate form with existing data
+    document.getElementById('scheduleDate').value = formatDateForInput(date);
+    document.getElementById('slotDuration').value = slot.replace(' minutes', '');
+    document.getElementById('startTime').value = startTime;
+    document.getElementById('endTime').value = endTime;
+    
+    // Scroll to form
+    document.querySelector('.schedule-input-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+function deleteSchedule(button) {
+    const row = button.closest('tr');
+    const scheduleId = parseInt(row.getAttribute('data-schedule-id'));
+    const schedule = schedules.find(s => s.id === scheduleId);
+    
+    if (confirm(`Are you sure you want to delete the schedule for ${schedule.date}?`)) {
+        schedules = schedules.filter(s => s.id !== scheduleId);
+        renderScheduleTable();
+        showNotification('Schedule deleted successfully');
+    }
+}
+
+function renderScheduleTable() {
+    const tbody = document.getElementById('scheduleTableBody');
+    
+    if (schedules.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="5" class="text-center py-4">
+                    <div class="schedule-empty-state">
+                        <i class="fas fa-calendar-times"></i>
+                        <h6>No schedules found</h6>
+                        <p>Add your first schedule using the form above</p>
+                    </div>
+                </td>
+            </tr>
+        `;
+        return;
+    }
+    
+    tbody.innerHTML = schedules.map(schedule => `
+        <tr data-schedule-id="${schedule.id}">
+            <td>${schedule.date}</td>
+            <td class="time-display">${schedule.startTime}</td>
+            <td class="time-display">${schedule.endTime}</td>
+            <td>${schedule.slot}</td>
+            <td>
+                <button class="btn btn-primary btn-sm me-2" onclick="editSchedule(this)">Edit</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteSchedule(this)">Delete</button>
+            </td>
+        </tr>
+    `).join('');
+}
+
+function clearScheduleForm() {
+    document.getElementById('scheduleDate').value = '';
+    document.getElementById('slotDuration').value = '';
+    document.getElementById('startTime').value = '';
+    document.getElementById('endTime').value = '';
+    editingScheduleId = null;
+    clearScheduleErrors();
+}
+
+function clearScheduleErrors() {
+    ['scheduleDate', 'slotDuration', 'startTime', 'endTime'].forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        const errorDiv = document.getElementById(fieldId + 'Error');
+        
+        if (field) field.classList.remove('is-invalid');
+        if (errorDiv) errorDiv.textContent = '';
+    });
+}
+
+function showScheduleError(fieldId, message) {
+    const field = document.getElementById(fieldId);
+    const errorDiv = document.getElementById(fieldId + 'Error');
+    
+    if (field) field.classList.add('is-invalid');
+    if (errorDiv) errorDiv.textContent = message;
+}
+
+function formatDateForDisplay(dateString) {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+}
+
+function formatDateForInput(dateString) {
+    const [day, month, year] = dateString.split('/');
+    return `${year}-${month}-${day}`;
+}
+
+// Initialize time schedule page
+function initializeTimeSchedule() {
+    renderScheduleTable();
+    
+    // Set minimum date to today
+    const today = new Date().toISOString().split('T')[0];
+    const dateInput = document.getElementById('scheduleDate');
+    if (dateInput) {
+        dateInput.min = today;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     if (currentPage !== 'logout') {
         sessionStorage.setItem('lastDoctorPage', currentPage);
     }
     
     if (currentPage === 'appointment') {
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const tabName = this.getAttribute('data-tab');
-                switchTab(tabName);
-            });
-        });
+        // Empty appointment section - no functionality needed
     }
     
     if (currentPage === 'report') {
@@ -517,6 +580,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 showReport(reportType);
             });
         });
+    }
+    
+    if (currentPage === 'timeschedule') {
+        initializeTimeSchedule();
     }
     
     if (currentPage === 'settings') {

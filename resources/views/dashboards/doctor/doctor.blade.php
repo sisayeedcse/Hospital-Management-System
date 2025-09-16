@@ -4,7 +4,7 @@ $menu = [
     'dashboard' => ['Dashboard', 'fa-house'],
     'appointment' => ['Appointment', 'fa-calendar'],
     'report' => ['Report', 'fa-file-alt'],
-    'feedback' => ['Feedback', 'fa-comment-dots'],
+    'timeschedule' => ['Time Schedule', 'fa-clock'],
     'settings' => ['Settings', 'fa-gear'],
     'addtips' => ['Add Health Tips', 'fa-plus'],
     'logout' => ['Logout', 'fa-right-from-bracket'],
@@ -69,120 +69,7 @@ $menu = [
                         <h4 class="welcome-note">Welcome To <span class="hospital-name">HospitalMS</span></h4>
                     </div>
                     <?php elseif ($page === 'appointment'): ?>
-                    <h3>Dr. Jahidur Rahman</h3>
-                    
-                    <!-- Appointment Tabs -->
-                    <div class="appointment-tabs mt-4">
-                        <div class="tab-navigation">
-                            <button class="tab-btn active" data-tab="requests">
-                                Requests
-                            </button>
-                            <button class="tab-btn" data-tab="accepted">
-                                Accepted
-                            </button>
-                            <button class="tab-btn" data-tab="deleted">
-                                Deleted
-                            </button>
-                        </div>
-                        
-                        <!-- Requests Tab Content -->
-                        <div class="tab-content active" id="requests-tab">
-                            <div class="appointment-table-full">
-                                <div class="row fw-bold mb-2 appointment-header-row">
-                                    <div class="col-3">Patient Name</div>
-                                    <div class="col-3">Diagnosis</div>
-                                    <div class="col-3">Contact Info</div>
-                                    <div class="col-3">Action</div>
-                                </div>
-                                <div class="row align-items-center mb-2">
-                                    <div class="col-3">Umme Hafsa</div>
-                                    <div class="col-3">Hypertension</div>
-                                    <div class="col-3">01700000000</div>
-                                    <div class="col-3 d-flex justify-content-start gap-2">
-                                        <button class="btn btn-success btn-sm" onclick="acceptAppointment(this)">Accept</button>
-                                        <button class="btn btn-danger btn-sm" onclick="declineAppointment(this)">Decline</button>
-                                    </div>
-                                </div>
-                                <div class="row align-items-center mb-2">
-                                    <div class="col-3">Sayeed Ibne</div>
-                                    <div class="col-3">Asthma</div>
-                                    <div class="col-3">01700000000</div>
-                                    <div class="col-3 d-flex justify-content-start gap-2">
-                                        <button class="btn btn-success btn-sm" onclick="acceptAppointment(this)">Accept</button>
-                                        <button class="btn btn-danger btn-sm" onclick="declineAppointment(this)">Decline</button>
-                                    </div>
-                                </div>
-                                <div class="row align-items-center mb-2">
-                                    <div class="col-3">Umme Nadia</div>
-                                    <div class="col-3">Fever</div>
-                                    <div class="col-3">01700000000</div>
-                                    <div class="col-3 d-flex justify-content-start gap-2">
-                                        <button class="btn btn-success btn-sm" onclick="acceptAppointment(this)">Accept</button>
-                                        <button class="btn btn-danger btn-sm" onclick="declineAppointment(this)">Decline</button>
-                                    </div>
-                                </div>
-                                <div class="row align-items-center mb-2">
-                                    <div class="col-3">Sayeed Ibne</div>
-                                    <div class="col-3">Typhoid</div>
-                                    <div class="col-3">01700000000</div>
-                                    <div class="col-3 d-flex justify-content-start gap-2">
-                                        <button class="btn btn-success btn-sm" onclick="acceptAppointment(this)">Accept</button>
-                                        <button class="btn btn-danger btn-sm" onclick="declineAppointment(this)">Decline</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Accepted Tab Content -->
-                        <div class="tab-content" id="accepted-tab">
-                            <div class="appointment-table-full">
-                                <div class="row fw-bold mb-2 appointment-header-row">
-                                    <div class="col-3">Patient Name</div>
-                                    <div class="col-3">Diagnosis</div>
-                                    <div class="col-3">Contact Info</div>
-                                    <div class="col-3">Action</div>
-                                </div>
-                                <div class="row align-items-center mb-2">
-                                    <div class="col-3">Rahim Ahmed</div>
-                                    <div class="col-3">Diabetes</div>
-                                    <div class="col-3">01711111111</div>
-                                    <div class="col-3 d-flex justify-content-start gap-2">
-                                        <button class="btn btn-success btn-sm" onclick="doneAppointment(this)">Done</button>
-                                        <button class="btn btn-danger btn-sm" onclick="cancelAppointment(this)">Cancel</button>
-                                    </div>
-                                </div>
-                                <div class="row align-items-center mb-2">
-                                    <div class="col-3">Fatima Begum</div>
-                                    <div class="col-3">Heart Disease</div>
-                                    <div class="col-3">01722222222</div>
-                                    <div class="col-3 d-flex justify-content-start gap-2">
-                                        <button class="btn btn-success btn-sm" onclick="doneAppointment(this)">Done</button>
-                                        <button class="btn btn-danger btn-sm" onclick="cancelAppointment(this)">Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Deleted Tab Content -->
-                        <div class="tab-content" id="deleted-tab">
-                            <div class="appointment-table-full">
-                                <div class="row fw-bold mb-2 appointment-header-row">
-                                    <div class="col-3">Patient Name</div>
-                                    <div class="col-3">Diagnosis</div>
-                                    <div class="col-3">Contact Info</div>
-                                    <div class="col-3">Action</div>
-                                </div>
-                                <div class="row align-items-center mb-2">
-                                    <div class="col-3">Karim Uddin</div>
-                                    <div class="col-3">Cold & Flu</div>
-                                    <div class="col-3">01733333333</div>
-                                    <div class="col-3 d-flex justify-content-start gap-2">
-                                        <button class="btn btn-secondary btn-sm" onclick="revokeAppointment(this)">Revoke</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Empty appointment section - shows blank white page -->
                     <?php elseif ($page === 'report'): ?>
                     <h3>Dr. Jahidur Rahman</h3>
                     <h4 class="mt-3 report-title"><span class="hospital-name">Reports</span></h4>
@@ -208,49 +95,180 @@ $menu = [
                             <div id="report-table"></div>
                         </div>
                     </div>
-                    <?php elseif ($page === 'feedback'): ?>
+                    <?php elseif ($page === 'timeschedule'): ?>
                     <h3>Dr. Jahidur Rahman</h3>
-                    <h4 class="mt-3 report-title"><span class="hospital-name">Patient Ratings & Reviews</span></h4>
+                    <h4 class="mt-3">Doctor Time Schedule</h4>
                     
-                    <div class="ratings-content mt-4">
-                        <div class="ratings-summary mb-4">
-                            <h5>Average Rating: 4.5 ⭐</h5>
-                            <p class="text-muted">Based on 4 patient reviews</p>
+                    <div class="time-schedule-content mt-4">
+                        <!-- Input Section -->
+                        <div class="schedule-input-section mb-4">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label class="form-label">Select Date <span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input type="date" class="form-control" id="scheduleDate" required>
+                                    </div>
+                                    <div class="invalid-feedback" id="scheduleDateError"></div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">Slot Duration <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="slotDuration" required>
+                                        <option value="">Select Duration</option>
+                                        <option value="10">10 minutes</option>
+                                        <option value="15">15 minutes</option>
+                                        <option value="20">20 minutes</option>
+                                        <option value="25">25 minutes</option>
+                                        <option value="30">30 minutes</option>
+                                        <option value="35">35 minutes</option>
+                                        <option value="40">40 minutes</option>
+                                        <option value="45">45 minutes</option>
+                                    </select>
+                                    <div class="invalid-feedback" id="slotDurationError"></div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">Start Time <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="startTime" required>
+                                        <option value="">Select Start Time</option>
+                                        <option value="06:00 AM">06:00 AM</option>
+                                        <option value="06:30 AM">06:30 AM</option>
+                                        <option value="07:00 AM">07:00 AM</option>
+                                        <option value="07:30 AM">07:30 AM</option>
+                                        <option value="08:00 AM">08:00 AM</option>
+                                        <option value="08:30 AM">08:30 AM</option>
+                                        <option value="09:00 AM">09:00 AM</option>
+                                        <option value="09:30 AM">09:30 AM</option>
+                                        <option value="10:00 AM">10:00 AM</option>
+                                        <option value="10:30 AM">10:30 AM</option>
+                                        <option value="11:00 AM">11:00 AM</option>
+                                        <option value="11:30 AM">11:30 AM</option>
+                                        <option value="12:00 PM">12:00 PM</option>
+                                        <option value="12:30 PM">12:30 PM</option>
+                                        <option value="01:00 PM">01:00 PM</option>
+                                        <option value="01:30 PM">01:30 PM</option>
+                                        <option value="02:00 PM">02:00 PM</option>
+                                        <option value="02:30 PM">02:30 PM</option>
+                                        <option value="03:00 PM">03:00 PM</option>
+                                        <option value="03:30 PM">03:30 PM</option>
+                                        <option value="04:00 PM">04:00 PM</option>
+                                        <option value="04:30 PM">04:30 PM</option>
+                                        <option value="05:00 PM">05:00 PM</option>
+                                        <option value="05:30 PM">05:30 PM</option>
+                                        <option value="06:00 PM">06:00 PM</option>
+                                        <option value="06:30 PM">06:30 PM</option>
+                                        <option value="07:00 PM">07:00 PM</option>
+                                        <option value="07:30 PM">07:30 PM</option>
+                                        <option value="08:00 PM">08:00 PM</option>
+                                        <option value="08:30 PM">08:30 PM</option>
+                                        <option value="09:00 PM">09:00 PM</option>
+                                        <option value="09:30 PM">09:30 PM</option>
+                                        <option value="10:00 PM">10:00 PM</option>
+                                        <option value="10:30 PM">10:30 PM</option>
+                                        <option value="11:00 PM">11:00 PM</option>
+                                        <option value="11:30 PM">11:30 PM</option>
+                                    </select>
+                                    <div class="invalid-feedback" id="startTimeError"></div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">End Time <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="endTime" required>
+                                        <option value="">Select End Time</option>
+                                        <option value="06:00 AM">06:00 AM</option>
+                                        <option value="06:30 AM">06:30 AM</option>
+                                        <option value="07:00 AM">07:00 AM</option>
+                                        <option value="07:30 AM">07:30 AM</option>
+                                        <option value="08:00 AM">08:00 AM</option>
+                                        <option value="08:30 AM">08:30 AM</option>
+                                        <option value="09:00 AM">09:00 AM</option>
+                                        <option value="09:30 AM">09:30 AM</option>
+                                        <option value="10:00 AM">10:00 AM</option>
+                                        <option value="10:30 AM">10:30 AM</option>
+                                        <option value="11:00 AM">11:00 AM</option>
+                                        <option value="11:30 AM">11:30 AM</option>
+                                        <option value="12:00 PM">12:00 PM</option>
+                                        <option value="12:30 PM">12:30 PM</option>
+                                        <option value="01:00 PM">01:00 PM</option>
+                                        <option value="01:30 PM">01:30 PM</option>
+                                        <option value="02:00 PM">02:00 PM</option>
+                                        <option value="02:30 PM">02:30 PM</option>
+                                        <option value="03:00 PM">03:00 PM</option>
+                                        <option value="03:30 PM">03:30 PM</option>
+                                        <option value="04:00 PM">04:00 PM</option>
+                                        <option value="04:30 PM">04:30 PM</option>
+                                        <option value="05:00 PM">05:00 PM</option>
+                                        <option value="05:30 PM">05:30 PM</option>
+                                        <option value="06:00 PM">06:00 PM</option>
+                                        <option value="06:30 PM">06:30 PM</option>
+                                        <option value="07:00 PM">07:00 PM</option>
+                                        <option value="07:30 PM">07:30 PM</option>
+                                        <option value="08:00 PM">08:00 PM</option>
+                                        <option value="08:30 PM">08:30 PM</option>
+                                        <option value="09:00 PM">09:00 PM</option>
+                                        <option value="09:30 PM">09:30 PM</option>
+                                        <option value="10:00 PM">10:00 PM</option>
+                                        <option value="10:30 PM">10:30 PM</option>
+                                        <option value="11:00 PM">11:00 PM</option>
+                                        <option value="11:30 PM">11:30 PM</option>
+                                    </select>
+                                    <div class="invalid-feedback" id="endTimeError"></div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <button type="button" class="btn btn-primary" onclick="saveSchedule()">Save Schedule</button>
+                                </div>
+                            </div>
                         </div>
                         
-                        <div class="ratings-table-full">
-                            <div class="table-responsive">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Patient Name</th>
-                                            <th>Rating</th>
-                                            <th>Review</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Umme Hafsa</td>
-                                            <td class="text-warning">⭐⭐⭐⭐⭐</td>
-                                            <td>Great Service</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sayeed Ibne</td>
-                                            <td class="text-warning">⭐⭐⭐⭐⭐</td>
-                                            <td>Well Mannered</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Rahim Ahmed</td>
-                                            <td class="text-warning">⭐⭐⭐⭐</td>
-                                            <td>Very professional and helpful</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fatima Begum</td>
-                                            <td class="text-warning">⭐⭐⭐⭐</td>
-                                            <td>Good experience overall</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <!-- Saved Schedule List -->
+                        <div class="schedule-list-section">
+                            <h5 class="mb-3">Saved Time Schedules</h5>
+                            <div class="schedule-table-full">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Start Time</th>
+                                                <th>End Time</th>
+                                                <th>Slot</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="scheduleTableBody">
+                                            <!-- Sample data -->
+                                            <tr>
+                                                <td>15/09/2025</td>
+                                                <td>06:00 PM</td>
+                                                <td>10:00 PM</td>
+                                                <td>15 minutes</td>
+                                                <td>
+                                                    <button class="btn btn-primary btn-sm me-2" onclick="editSchedule(this)">Edit</button>
+                                                    <button class="btn btn-danger btn-sm" onclick="deleteSchedule(this)">Delete</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>16/09/2025</td>
+                                                <td>07:00 PM</td>
+                                                <td>09:00 PM</td>
+                                                <td>10 minutes</td>
+                                                <td>
+                                                    <button class="btn btn-primary btn-sm me-2" onclick="editSchedule(this)">Edit</button>
+                                                    <button class="btn btn-danger btn-sm" onclick="deleteSchedule(this)">Delete</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>17/09/2025</td>
+                                                <td>04:00 PM</td>
+                                                <td>08:00 PM</td>
+                                                <td>20 minutes</td>
+                                                <td>
+                                                    <button class="btn btn-primary btn-sm me-2" onclick="editSchedule(this)">Edit</button>
+                                                    <button class="btn btn-danger btn-sm" onclick="deleteSchedule(this)">Delete</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -291,15 +309,37 @@ $menu = [
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                         <div class="col-md-6">
-                                            <label class="form-label">Specialization <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="specialization" id="specialization" placeholder="Specialization" value="Cardiologist">
-                                            <div class="invalid-feedback" id="specializationError"></div>
-                                        </div>
                                         <div class="col-md-6">
-                                            <label class="form-label">Mobile <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="mobile" id="mobile" placeholder="+8801700000000" value="+8801700000000">
-                                            <div class="invalid-feedback" id="mobileError"></div>
+                                            <label class="form-label">Department <span class="text-danger">*</span></label>
+                                            <select class="form-select pe-5" name="department" id="department">
+                                                <option value="">Select Department</option>
+                                                <option value="Cardiology">Cardiology</option>
+                                                <option value="Neurology">Neurology</option>
+                                                <option value="Pediatrics">Pediatrics</option>
+                                                <option value="Orthopedics">Orthopedics</option>
+                                                <option value="Dermatology">Dermatology</option>
+                                                <option value="Dentistry">Dentistry</option>
+                                                <option value="ENT">ENT (Ear, Nose & Throat)</option>
+                                                <option value="General Medicine">General Medicine</option>
+                                                <option value="Urology">Urology</option>
+                                            </select>
+                                            <div class="invalid-feedback" id="departmentError"></div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <label class="form-label">Specialization<span class="text-danger">*</span></label>
+                                            
+                                            <select class="form-select pe-5" name="specialization" id="specialization">
+                                                <option value="">Select Specialization</option>
+                                                <option value="Cardiologist">Cardiologist</option>
+                                                <option value="Dermatologist">Dermatologist</option>
+                                                <option value="Neurologist">Neurologist</option>
+                                                <option value="Orthopedic">Orthopedic</option>
+                                                <option value="Psychiatrist">Psychiatrist</option>
+                                                <option value="Dentist">Dentist</option>
+                                                <option value="General Physician">General Physician</option>
+                                            </select>
+                                            <div class="invalid-feedback" id="specializationError"></div>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -315,7 +355,12 @@ $menu = [
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Mobile <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="mobile" id="mobile" placeholder="+8801700000000" value="+8801700000000">
+                                            <div class="invalid-feedback" id="mobileError"></div>
+                                        </div>
+                                        <div class="col-md-6">
                                             <label class="form-label">Address <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="address" id="address" placeholder="Enter Address" value="123 Medical Center, Dhaka, Bangladesh">
                                             <div class="invalid-feedback" id="addressError"></div>
