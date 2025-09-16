@@ -23,14 +23,41 @@ Route::get('/contact', function () {
     return view('publicPages.contact');
 });
 
-Route::get('/login', function () {
-    return view('authPages.login');
-});
+use App\Http\Controllers\Auth\LoginController;
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/register', function () {
-    return view('authPages.register');
+use App\Http\Controllers\Auth\RegisteredUserController;
+Route::get('/register', [RegisteredUserController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisteredUserController::class, 'register']);
+
+
+Route::get('/doctor', function () {
+    return view('dashboards.doctor.doctor');
 });
 
 Route::get('/patient', function () {
     return view('dashboards.patient.patient');
 });
+<<<<<<< HEAD
+=======
+
+use App\Http\Controllers\DashboardController;
+Route::get('/admin', [DashboardController::class, 'adminDashboard']);
+
+// Doctor Edit/Delete
+Route::get('/admin/doctors/edit/{id}', [DashboardController::class, 'editDoctor']);
+Route::post('/admin/doctors/edit/{id}', [DashboardController::class, 'updateDoctor']);
+Route::post('/admin/doctors/delete/{id}', [DashboardController::class, 'deleteDoctor']);
+
+// Patient Edit/Delete
+Route::get('/admin/patients/edit/{id}', [DashboardController::class, 'editPatient']);
+Route::post('/admin/patients/edit/{id}', [DashboardController::class, 'updatePatient']);
+Route::post('/admin/patients/delete/{id}', [DashboardController::class, 'deletePatient']);
+
+Route::get('/staff', function () {
+    return view('dashboards.staff.staff');
+});
+
+>>>>>>> f032de94ef6d5cfd34d9494c3e102947f6ac96e3

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ====== Global Style ====== */
 body {
     margin: 0;
@@ -5,9 +6,13 @@ body {
     background: #f8f9fa;
     color: #333;
 }
+=======
+/* Patient dashboard custom styles */
+>>>>>>> f032de94ef6d5cfd34d9494c3e102947f6ac96e3
 
 /* ====== Sidebar ====== */
 .sidebar {
+<<<<<<< HEAD
     width: 220px;
     background: #1e3d59;
     height: 100vh;
@@ -73,11 +78,77 @@ body {
     cursor: pointer;
 }
 .profile-img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+=======
+    background: #f8fafc;
+    min-height: 100vh;
+    border-right: 1px solid #e5e7eb;
 }
 
+.sidebar-header {
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.logo-text {
+    color: #2563eb;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: #333;
+    padding: 12px 20px;
+    border-radius: 0;
+    transition: background 0.2s;
+}
+
+.nav-link.active,
+.nav-link:hover {
+    background: #2563eb;
+    color: #fff;
+}
+
+.topbar {
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.profile-pic img {
+>>>>>>> f032de94ef6d5cfd34d9494c3e102947f6ac96e3
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    margin-left: 16px;
+}
+
+.dashboard-full,
+.settings-full {
+    background: #f1f5f9;
+    border-radius: 12px;
+    padding: 32px 24px;
+    text-align: center;
+}
+
+.patient-name {
+    color: #2563eb;
+}
+
+.hospital-name {
+    color: #16a34a;
+}
+
+.table {
+    background: #fff;
+}
+
+.settings-profile-pic {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #2563eb;
+}
+
+<<<<<<< HEAD
 /* ====== Section ====== */
 .section {
     background: #fff;
@@ -209,3 +280,15 @@ body {
 #logout {
     text-align: center;
 }
+=======
+.btn-primary,
+.btn-success {
+    background: #2563eb;
+    border: none;
+}
+
+.btn-outline-primary {
+    color: #2563eb;
+    border-color: #2563eb;
+}
+>>>>>>> f032de94ef6d5cfd34d9494c3e102947f6ac96e3
