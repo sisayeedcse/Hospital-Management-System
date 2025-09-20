@@ -37,6 +37,35 @@ Route::get('/doctor', function () {
     return view('dashboards.doctor.doctor');
 });
 
-Route::get('/patient', function () {
-    return view('dashboards.patient.patient');
-});
+use App\Http\Controllers\PatientController;
+
+Route::get('/patient', [PatientController::class, 'dashboard'])->name('patient.dashboard');
+Route::post('/patient/search-doctors', [PatientController::class, 'searchDoctors'])->name('patient.search.doctors');
+Route::post('/patient/doctor-slots', [PatientController::class, 'getDoctorSlots'])->name('patient.doctor.slots');
+Route::post('/patient/book-appointment', [PatientController::class, 'bookAppointment'])->name('patient.book.appointment');
+Route::post('/patient/cancel-appointment', [PatientController::class, 'cancelAppointment'])->name('patient.cancel.appointment');
+Route::post('/patient/reschedule-appointment', [PatientController::class, 'rescheduleAppointment'])->name('patient.reschedule.appointment');
+Route::get('/patient/departments', [PatientController::class, 'getDepartments'])->name('patient.departments');
+
+
+
+
+
+
+// Patient Dashboard
+Route::get('/patient/dashboard', [PatientController::class, 'dashboard'])->name('patient.dashboard');
+
+// Departments
+Route::get('/patient/departments', [PatientController::class, 'getDepartments']);
+
+// Search doctors
+Route::post('/patient/search-doctors', [PatientController::class, 'searchDoctors']);
+
+// Book appointment
+Route::post('/patient/book-appointment', [PatientController::class, 'bookAppointment']);
+
+// Cancel appointment
+Route::post('/patient/cancel-appointment', [PatientController::class, 'cancelAppointment']);
+
+// Reschedule appointment
+Route::post('/patient/reschedule-appointment', [PatientController::class, 'rescheduleAppointment']);
