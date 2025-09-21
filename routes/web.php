@@ -40,3 +40,10 @@ Route::get('/doctor', function () {
 Route::get('/patient', function () {
     return view('dashboards.patient.patient');
 });
+
+Route::get('/admin', function () {
+    return view('dashboards.admin.admin');
+});
+Route::get('/staff', function () {
+    return view('dashboards.staff.staff');
+});
