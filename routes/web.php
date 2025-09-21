@@ -32,18 +32,10 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 Route::get('/register', [RegisteredUserController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisteredUserController::class, 'register']);
 
-
 Route::get('/doctor', function () {
     return view('dashboards.doctor.doctor');
 });
 
 Route::get('/patient', function () {
     return view('dashboards.patient.patient');
-});
-
-Route::get('/admin', function () {
-    return view('dashboards.admin.admin');
-});
-Route::get('/staff', function () {
-    return view('dashboards.staff.staff');
 });
