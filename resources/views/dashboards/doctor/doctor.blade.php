@@ -73,7 +73,7 @@ $menu = [
                     <?php elseif ($page === 'report'): ?>
                     <h3>Dr. Jahidur Rahman</h3>
                     <h4 class="mt-3 report-title"><span class="hospital-name">Reports</span></h4>
-                    
+
                     <div class="report-buttons mt-4 mb-4">
                         <button class="btn btn-primary report-btn me-3 mb-2" data-report="appointments">
                             <i class="fas fa-calendar-alt me-2"></i>Total Appointments
@@ -88,7 +88,7 @@ $menu = [
                             <i class="fas fa-star me-2"></i>Overall Ratings
                         </button>
                     </div>
-                    
+
                     <div id="report-content" class="report-content" style="display: none;">
                         <div class="report-table-full">
                             <h5 id="report-title" class="mb-3"></h5>
@@ -98,7 +98,7 @@ $menu = [
                     <?php elseif ($page === 'timeschedule'): ?>
                     <h3>Dr. Jahidur Rahman</h3>
                     <h4 class="mt-3">Doctor Time Schedule</h4>
-                    
+
                     <div class="time-schedule-content mt-4">
                         <!-- Input Section -->
                         <div class="schedule-input-section mb-4">
@@ -214,11 +214,12 @@ $menu = [
                             </div>
                             <div class="row mt-3">
                                 <div class="col-12">
-                                    <button type="button" class="btn btn-primary" onclick="saveSchedule()">Save Schedule</button>
+                                    <button type="button" class="btn btn-primary" onclick="saveSchedule()">Save
+                                        Schedule</button>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Saved Schedule List -->
                         <div class="schedule-list-section">
                             <h5 class="mb-3">Saved Time Schedules</h5>
@@ -242,8 +243,10 @@ $menu = [
                                                 <td>10:00 PM</td>
                                                 <td>15 minutes</td>
                                                 <td>
-                                                    <button class="btn btn-primary btn-sm me-2" onclick="editSchedule(this)">Edit</button>
-                                                    <button class="btn btn-danger btn-sm" onclick="deleteSchedule(this)">Delete</button>
+                                                    <button class="btn btn-primary btn-sm me-2"
+                                                        onclick="editSchedule(this)">Edit</button>
+                                                    <button class="btn btn-danger btn-sm"
+                                                        onclick="deleteSchedule(this)">Delete</button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -252,8 +255,10 @@ $menu = [
                                                 <td>09:00 PM</td>
                                                 <td>10 minutes</td>
                                                 <td>
-                                                    <button class="btn btn-primary btn-sm me-2" onclick="editSchedule(this)">Edit</button>
-                                                    <button class="btn btn-danger btn-sm" onclick="deleteSchedule(this)">Delete</button>
+                                                    <button class="btn btn-primary btn-sm me-2"
+                                                        onclick="editSchedule(this)">Edit</button>
+                                                    <button class="btn btn-danger btn-sm"
+                                                        onclick="deleteSchedule(this)">Delete</button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -262,8 +267,10 @@ $menu = [
                                                 <td>08:00 PM</td>
                                                 <td>20 minutes</td>
                                                 <td>
-                                                    <button class="btn btn-primary btn-sm me-2" onclick="editSchedule(this)">Edit</button>
-                                                    <button class="btn btn-danger btn-sm" onclick="deleteSchedule(this)">Delete</button>
+                                                    <button class="btn btn-primary btn-sm me-2"
+                                                        onclick="editSchedule(this)">Edit</button>
+                                                    <button class="btn btn-danger btn-sm"
+                                                        onclick="deleteSchedule(this)">Delete</button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -282,9 +289,12 @@ $menu = [
                                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqZ2eRaYapG3k6qtp9yCk6rfNQa2QOFriHIo1398PWnEskq-TlQXWYXwamEROS3uquXTA&usqp=CAU"
                                         alt="Profile" class="settings-profile-pic mb-2" id="profileImage">
                                     <div>
-                                        <input type="file" id="profileImageInput" accept="image/*" style="display: none;">
-                                        <button type="button" class="btn btn-success btn-sm" id="profileImageUploadBtn">Upload</button>
-                                        <button type="button" class="btn btn-danger btn-sm" onclick="removeProfileImage()">Remove</button>
+                                        <input type="file" id="profileImageInput" accept="image/*"
+                                            style="display: none;">
+                                        <button type="button" class="btn btn-success btn-sm"
+                                            id="profileImageUploadBtn">Upload</button>
+                                        <button type="button" class="btn btn-danger btn-sm"
+                                            onclick="removeProfileImage()">Remove</button>
                                     </div>
                                 </div>
 
@@ -299,18 +309,22 @@ $menu = [
                                     <div class="row mb-3">
                                         <div class="col-md-6">
                                             <label class="form-label">Name <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="name" id="name" placeholder="Full Name" value="Dr. Jahidur Rahman">
+                                            <input type="text" class="form-control" name="name" id="name"
+                                                placeholder="Full Name" value="Dr. Jahidur Rahman">
                                             <div class="invalid-feedback" id="nameError"></div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label">Date of Birth <span class="text-danger">*</span></label>
-                                            <input type="date" class="form-control" name="dob" id="dob" value="1980-01-01">
+                                            <label class="form-label">Date of Birth <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="date" class="form-control" name="dob" id="dob"
+                                                value="1980-01-01">
                                             <div class="invalid-feedback" id="dobError"></div>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-md-6">
-                                            <label class="form-label">Department <span class="text-danger">*</span></label>
+                                            <label class="form-label">Department <span
+                                                    class="text-danger">*</span></label>
                                             <select class="form-select pe-5" name="department" id="department">
                                                 <option value="">Select Department</option>
                                                 <option value="Cardiology">Cardiology</option>
@@ -325,10 +339,11 @@ $menu = [
                                             </select>
                                             <div class="invalid-feedback" id="departmentError"></div>
                                         </div>
-                                        
+
                                         <div class="col-md-6">
-                                            <label class="form-label">Specialization<span class="text-danger">*</span></label>
-                                            
+                                            <label class="form-label">Specialization<span
+                                                    class="text-danger">*</span></label>
+
                                             <select class="form-select pe-5" name="specialization" id="specialization">
                                                 <option value="">Select Specialization</option>
                                                 <option value="Cardiologist">Cardiologist</option>
@@ -345,24 +360,29 @@ $menu = [
                                     <div class="row mb-3">
                                         <div class="col-md-6">
                                             <label class="form-label">Email <span class="text-danger">*</span></label>
-                                            <input type="email" class="form-control" name="email" id="email" placeholder="someone@gmail.com" value="jahidur@hospital.com">
+                                            <input type="email" class="form-control" name="email" id="email"
+                                                placeholder="someone@gmail.com" value="jahidur@hospital.com">
                                             <div class="invalid-feedback" id="emailError"></div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Gender <span class="text-danger">*</span></label>
-                                            <input type="gender" class="form-control" name="gender" id="gender" placeholder="" value="Male">
+                                            <input type="gender" class="form-control" name="gender" id="gender"
+                                                placeholder="" value="Male">
                                             <div class="invalid-feedback" id="genderError"></div>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-md-6">
                                             <label class="form-label">Mobile <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="mobile" id="mobile" placeholder="+8801700000000" value="+8801700000000">
+                                            <input type="text" class="form-control" name="mobile" id="mobile"
+                                                placeholder="+8801700000000" value="+8801700000000">
                                             <div class="invalid-feedback" id="mobileError"></div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Address <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="address" id="address" placeholder="Enter Address" value="123 Medical Center, Dhaka, Bangladesh">
+                                            <input type="text" class="form-control" name="address" id="address"
+                                                placeholder="Enter Address"
+                                                value="123 Medical Center, Dhaka, Bangladesh">
                                             <div class="invalid-feedback" id="addressError"></div>
                                         </div>
                                     </div>
@@ -371,7 +391,8 @@ $menu = [
                             <div class="row">
                                 <div class="col-md-12 text-end">
                                     <button type="submit" class="btn btn-primary">Save</button>
-                                    <button type="button" class="btn btn-outline-primary ms-2" onclick="resetForm()">Cancel</button>
+                                    <button type="button" class="btn btn-outline-primary ms-2"
+                                        onclick="resetForm()">Cancel</button>
                                 </div>
                             </div>
                         </form>
@@ -383,14 +404,16 @@ $menu = [
                         <form class="addtips-form mt-4" id="addtipsForm">
                             <div class="mb-3">
                                 <label class="form-label">Description <span class="text-danger">*</span></label>
-                                <textarea class="form-control" name="description" id="description" rows="4" placeholder="Write your health tips here (20-250 words)"></textarea>
+                                <textarea class="form-control" name="description" id="description" rows="4"
+                                    placeholder="Write your health tips here (20-250 words)"></textarea>
                                 <div class="word-count mt-2">
                                     <small class="text-muted">Word count: <span id="wordCount">0</span>/250</small>
                                 </div>
                                 <div class="invalid-feedback" id="descriptionError"></div>
                             </div>
                             <button type="submit" class="btn btn-primary">Save</button>
-                            <button type="button" class="btn btn-outline-primary ms-2" onclick="resetHealthTipsForm()">Cancel</button>
+                            <button type="button" class="btn btn-outline-primary ms-2"
+                                onclick="resetHealthTipsForm()">Cancel</button>
                         </form>
                     </div>
                     <?php elseif ($page === 'logout'): ?>
@@ -403,7 +426,10 @@ $menu = [
                         <div class="modal-box">
                             <h5>Logout Confirmation</h5>
                             <p>Are you sure you want to do logout?</p>
-                            <button onclick="confirmLogout()" class="btn btn-primary">Confirm</button>
+                            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">Confirm</button>
+                            </form>
                             <button onclick="cancelLogout()" class="btn btn-outline-primary">Cancel</button>
                         </div>
                     </div>
@@ -420,6 +446,12 @@ $menu = [
             <span>Saved Successfully</span>
         </div>
     </div>
+
+    <script>
+        function cancelLogout() {
+            window.location.href = '?page=dashboard';
+        }
+    </script>
 
 </body>
 

@@ -335,7 +335,10 @@ $menu = [
                         <div class="modal-box">
                             <h5>Logout Confirmation</h5>
                             <p>Are you sure you want to logout?</p>
-                            <a href="login.php" class="btn btn-primary">Confirm</a>
+                            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">Confirm</button>
+                            </form>
                             <a href="?page=dashboard" class="btn btn-outline-primary">Cancel</a>
                         </div>
                     </div>
