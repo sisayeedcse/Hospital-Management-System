@@ -36,8 +36,31 @@
                         <h2 class="login-form-title">Sign In</h2>
                         <p class="login-form-subtitle">Enter your credentials to access your account</p>
 
-                        <form method="POST" action="#" id="loginForm">
+                        <form method="POST" action="{{ route('login') }}" id="loginForm">
                             @csrf
+
+                            <!-- Display errors if any -->
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    @foreach ($errors->all() as $error)
+                                        <small>{{ $error }}</small><br>
+                                    @endforeach
+                                </div>
+                            @endif
+
+                            <!-- Display success messages -->
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    <small>{{ session('success') }}</small>
+                                </div>
+                            @endif
+
+                            <!-- Display error messages -->
+                            @if (session('error'))
+                                <div class="alert alert-danger">
+                                    <small>{{ session('error') }}</small>
+                                </div>
+                            @endif
 
                             <!-- Email Input -->
                             <div class="form-group">

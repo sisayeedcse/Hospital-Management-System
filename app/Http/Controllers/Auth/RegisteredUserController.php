@@ -50,6 +50,7 @@ class RegisteredUserController extends Controller
                     'name' => $user->name,
                     'email' => $user->email,
                     'user_id' => $user->id,
+                    'department' => $request->department,
                 ]);
                 break;
             case 'staff':
