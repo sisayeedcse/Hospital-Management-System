@@ -1,8 +1,25 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
+    // If user is logged in, redirect to their dashboard
+    if (Auth::check()) {
+        $user = Auth::user();
+        switch ($user->role) {
+            case 'admin':
+                return redirect('/admin');
+            case 'doctor':
+                return redirect('/doctor');
+            case 'staff':
+                return redirect('/staff');
+            case 'patient':
+                return redirect('/patient');
+            default:
+                return view('publicPages.home');
+        }
+    }
     return view('publicPages.home');
 });
 
@@ -32,6 +49,11 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 Route::get('/register', [RegisteredUserController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisteredUserController::class, 'register']);
 
+// Protected Dashboard Routes - Users can only access their own dashboard
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\PatientController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\StaffController;
 
 Route::get('/doctor', function () {
     return view('dashboards.doctor.doctor');
