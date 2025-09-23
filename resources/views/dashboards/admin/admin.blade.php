@@ -67,8 +67,11 @@ $menu = [
             <!-- Sidebar -->
             <div class="col-md-2 sidebar p-0">
                 <div class="sidebar-header text-center py-3">
-                    <h5 class="logo-text" style="border-right:2px solid #e5e7eb; padding-right: 10px;"><i
-                            class="fa-solid fa-hospital"></i> HospitalMS</h5>
+                    <a href="/" style="text-decoration:none;">
+                        <h5 class="logo-text" style="border-right:2px solid #e5e7eb; padding-right: 10px;">
+                            <i class="fa-solid fa-hospital"></i> HospitalMS
+                        </h5>
+                    </a>
                 </div>
                 <ul class="nav flex-column">
                     <?php foreach ($menu as $key => $item): ?>

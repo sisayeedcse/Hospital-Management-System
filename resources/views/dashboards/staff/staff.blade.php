@@ -43,8 +43,10 @@
     <div class="d-flex">
         <nav class="sidebar">
             <div class="sidebar-header">
-                <span>{!! $shiftIcons['Day'] !!}</span>
-                <span>HospitalMS</span>
+                <a href="/" style="text-decoration:none;">
+                    <span>{!! $shiftIcons['Day'] !!}</span>
+                    <span>HospitalMS</span>
+                </a>
             </div>
             <ul class="nav flex-column sidebar-menu mt-3">
                 <li class="nav-item">

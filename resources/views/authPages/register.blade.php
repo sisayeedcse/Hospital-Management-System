@@ -102,7 +102,7 @@
                             <!-- User Role -->
                             <div class="form-group">
                                 <label for="role">I am a</label>
-                                <select class="form-control" id="role" name="role" required>
+                                <select class="form-control" id="role" name="role" required onchange="toggleDepartmentField()">
                                     <option value="">Select your role</option>
                                     <option value="admin">Admin</option>
                                     <option value="doctor">Doctor</option>
@@ -110,6 +110,21 @@
                                     <option value="patient">Patient</option>
                                 </select>
                             </div>
+                            <!-- Department/Speciality for Doctor -->
+                            <div class="form-group" id="departmentField" style="display:none;">
+                                <label for="department">Department/Speciality</label>
+                                <input type="text" class="form-control" id="department" name="department" placeholder="Enter your speciality">
+                            </div>
+                            <script>
+                                function toggleDepartmentField() {
+                                    var role = document.getElementById('role').value;
+                                    var deptField = document.getElementById('departmentField');
+                                    deptField.style.display = (role === 'doctor') ? 'block' : 'none';
+                                }
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    toggleDepartmentField();
+                                });
+                            </script>
 
                             <!-- Terms and Conditions -->
                             <div class="terms-checkbox">

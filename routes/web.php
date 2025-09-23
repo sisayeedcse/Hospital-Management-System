@@ -4,22 +4,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    // If user is logged in, redirect to their dashboard
-    if (Auth::check()) {
-        $user = Auth::user();
-        switch ($user->role) {
-            case 'admin':
-                return redirect('/admin');
-            case 'doctor':
-                return redirect('/doctor');
-            case 'staff':
-                return redirect('/staff');
-            case 'patient':
-                return redirect('/patient');
-            default:
-                return view('publicPages.home');
-        }
-    }
     return view('publicPages.home');
 });
 
@@ -55,39 +39,11 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StaffController;
 
-Route::get('/doctor', function () {
-    return view('dashboards.doctor.doctor');
-});
-
-use App\Http\Controllers\PatientController;
-
-Route::get('/patient', [PatientController::class, 'dashboard'])->name('patient.dashboard');
-Route::post('/patient/search-doctors', [PatientController::class, 'searchDoctors'])->name('patient.search.doctors');
-Route::post('/patient/doctor-slots', [PatientController::class, 'getDoctorSlots'])->name('patient.doctor.slots');
-Route::post('/patient/book-appointment', [PatientController::class, 'bookAppointment'])->name('patient.book.appointment');
-Route::post('/patient/cancel-appointment', [PatientController::class, 'cancelAppointment'])->name('patient.cancel.appointment');
-Route::post('/patient/reschedule-appointment', [PatientController::class, 'rescheduleAppointment'])->name('patient.reschedule.appointment');
-Route::get('/patient/departments', [PatientController::class, 'getDepartments'])->name('patient.departments');
-
-
-
-
-
-
-// Patient Dashboard
-Route::get('/patient/dashboard', [PatientController::class, 'dashboard'])->name('patient.dashboard');
-
-// Departments
-Route::get('/patient/departments', [PatientController::class, 'getDepartments']);
-
-// Search doctors
-Route::post('/patient/search-doctors', [PatientController::class, 'searchDoctors']);
-
-// Book appointment
-Route::post('/patient/book-appointment', [PatientController::class, 'bookAppointment']);
-
-// Cancel appointment
-Route::post('/patient/cancel-appointment', [PatientController::class, 'cancelAppointment']);
-
-// Reschedule appointment
-Route::post('/patient/reschedule-appointment', [PatientController::class, 'rescheduleAppointment']);
+Route::get('/doctor', [DoctorController::class, 'dashboard'])->middleware('role:doctor')->name('doctor.dashboard');
+Route::post('/doctor/update-settings', [DoctorController::class, 'updateSettings'])->middleware('auth')->name('doctor.update.settings');
+Route::post('/doctor/upload-profile-image', [DoctorController::class, 'uploadProfileImage'])->middleware('auth')->name('doctor.upload.profile.image');
+Route::get('/patient', [PatientController::class, 'dashboard'])->middleware('role:patient')->name('patient.dashboard');
+    Route::post('/patient/update-settings', [PatientController::class, 'updateSettings'])->middleware('auth')->name('patient.update.settings');
+    Route::post('/patient/upload-profile-image', [PatientController::class, 'uploadProfileImage'])->middleware('auth')->name('patient.upload.profile.image');
+Route::get('/admin', [AdminController::class, 'dashboard'])->middleware('role:admin')->name('admin.dashboard');
+Route::get('/staff', [StaffController::class, 'dashboard'])->middleware('role:staff')->name('staff.dashboard');

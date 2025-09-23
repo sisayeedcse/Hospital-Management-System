@@ -57,8 +57,16 @@
 
                     <!-- Auth Buttons -->
                     <div class="navbar-nav ml-auto">
-                        <a href="{{ url('/login') }}" class="btn btn-login">Login</a>
-                        <a href="{{ url('/register') }}" class="btn btn-register">Register</a>
+                        @guest
+                            <a href="{{ url('/login') }}" class="btn btn-login">Login</a>
+                            <a href="{{ url('/register') }}" class="btn btn-register">Register</a>
+                        @else
+                            @php
+                                $role = Auth::user()->role;
+                                $dashboardRoute = $role === 'admin' ? route('admin.dashboard') : ($role === 'doctor' ? route('doctor.dashboard') : ($role === 'staff' ? route('staff.dashboard') : route('patient.dashboard')));
+                            @endphp
+                            <a href="{{ $dashboardRoute }}" class="btn btn-account">My Account</a>
+                        @endguest
                     </div>
                 </div>
             </div>

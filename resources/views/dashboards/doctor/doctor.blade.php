@@ -32,9 +32,11 @@ $menu = [
             <!-- Sidebar -->
             <div class="col-md-2 sidebar p-0">
                 <div class="sidebar-header text-center py-3">
-                    <h5 class="logo-text" style="border-right:2px solid #e5e7eb; padding-right: 10px;">
-                        <i class="fa-solid fa-hospital"></i> HospitalMS
-                    </h5>
+                    <a href="/" style="text-decoration:none;">
+                        <h5 class="logo-text" style="border-right:2px solid #e5e7eb; padding-right: 10px;">
+                            <i class="fa-solid fa-hospital"></i> HospitalMS
+                        </h5>
+                    </a>
                 </div>
                 <ul class="nav flex-column">
                     <?php foreach ($menu as $key => $item): ?>
@@ -54,9 +56,14 @@ $menu = [
                         <div class="search-box">
                             <input type="text" class="form-control" placeholder="Search">
                         </div>
-                        <div class="profile-pic">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqZ2eRaYapG3k6qtp9yCk6rfNQa2QOFriHIo1398PWnEskq-TlQXWYXwamEROS3uquXTA&usqp=CAU"
-                                alt="Profile" class="rounded-circle">
+                        <div class="profile-pic text-center">
+                            <form id="profileImageForm" method="POST" action="{{ route('doctor.upload.profile.image') }}" enctype="multipart/form-data">
+                                @csrf
+                                <label for="profileImageInput" style="cursor:pointer;">
+                                    <img src="{{ optional(\App\Models\Image::where('user_id', Auth::id())->where('role', 'doctor')->first())->image_path ? asset('storage/' . \App\Models\Image::where('user_id', Auth::id())->where('role', 'doctor')->first()->image_path) : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqZ2eRaYapG3k6qtp9yCk6rfNQa2QOFriHIo1398PWnEskq-TlQXWYXwamEROS3uquXTA&usqp=CAU' }}" alt="Profile" class="rounded-circle" width="120" height="120">
+                                </label>
+                                <input type="file" id="profileImageInput" name="profile_image" accept="image/*" style="display:none;" onchange="document.getElementById('profileImageForm').submit();">
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -65,13 +72,13 @@ $menu = [
                     <?php if ($page === 'dashboard'): ?>
                     <div class="dashboard-full">
                         <h4>Hi</h4>
-                        <h2 class="doctor-name"><strong>Dr. Jahidur Rahman</strong></h2>
+                        <h2 class="doctor-name"><strong>Dr. {{ $doctor->name ?? Auth::user()->name }}</strong></h2>
                         <h4 class="welcome-note">Welcome To <span class="hospital-name">HospitalMS</span></h4>
                     </div>
                     <?php elseif ($page === 'appointment'): ?>
                     <!-- Empty appointment section - shows blank white page -->
                     <?php elseif ($page === 'report'): ?>
-                    <h3>Dr. Jahidur Rahman</h3>
+                    <h3>Dr. {{ $doctor->name ?? Auth::user()->name }}</h3>
                     <h4 class="mt-3 report-title"><span class="hospital-name">Reports</span></h4>
 
                     <div class="report-buttons mt-4 mb-4">
@@ -283,7 +290,8 @@ $menu = [
                     <div class="settings-full">
                         <h3>Dr. Jahidur Rahman</h3>
                         <h5 class="mt-3">Edit Profile</h5>
-                        <form class="settings-form mt-4" id="settingsForm">
+                        <form class="settings-form mt-4" id="settingsForm" method="POST" action="{{ route('doctor.update.settings') }}">
+                            @csrf
                             <div class="row mb-4">
                                 <div class="col-md-3 text-center">
                                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqZ2eRaYapG3k6qtp9yCk6rfNQa2QOFriHIo1398PWnEskq-TlQXWYXwamEROS3uquXTA&usqp=CAU"
@@ -310,42 +318,62 @@ $menu = [
                                         <div class="col-md-6">
                                             <label class="form-label">Name <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="name" id="name"
-                                                placeholder="Full Name" value="Dr. Jahidur Rahman">
+                                                placeholder="Full Name" value="{{ $doctor->name ?? Auth::user()->name }}">
                                             <div class="invalid-feedback" id="nameError"></div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Date of Birth <span
                                                     class="text-danger">*</span></label>
                                             <input type="date" class="form-control" name="dob" id="dob"
-                                                value="1980-01-01">
+                                                value="{{ $doctor->dob ?? '' }}">
                                             <div class="invalid-feedback" id="dobError"></div>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-md-6">
-                                            <label class="form-label">Department <span
-                                                    class="text-danger">*</span></label>
+                                            <label class="form-label">Department <span class="text-danger">*</span></label>
                                             <select class="form-select pe-5" name="department" id="department">
                                                 <option value="">Select Department</option>
-                                                <option value="Cardiology">Cardiology</option>
-                                                <option value="Neurology">Neurology</option>
-                                                <option value="Pediatrics">Pediatrics</option>
-                                                <option value="Orthopedics">Orthopedics</option>
-                                                <option value="Dermatology">Dermatology</option>
-                                                <option value="Dentistry">Dentistry</option>
-                                                <option value="ENT">ENT (Ear, Nose & Throat)</option>
-                                                <option value="General Medicine">General Medicine</option>
-                                                <option value="Urology">Urology</option>
+                                                <option value="Cardiology" {{ (isset($doctor) && $doctor->department == 'Cardiology') ? 'selected' : '' }}>Cardiology</option>
+                                                <option value="Neurology" {{ (isset($doctor) && $doctor->department == 'Neurology') ? 'selected' : '' }}>Neurology</option>
+                                                <option value="Pediatrics" {{ (isset($doctor) && $doctor->department == 'Pediatrics') ? 'selected' : '' }}>Pediatrics</option>
+                                                <option value="Orthopedics" {{ (isset($doctor) && $doctor->department == 'Orthopedics') ? 'selected' : '' }}>Orthopedics</option>
+                                                <option value="Dermatology" {{ (isset($doctor) && $doctor->department == 'Dermatology') ? 'selected' : '' }}>Dermatology</option>
+                                                <option value="Dentistry" {{ (isset($doctor) && $doctor->department == 'Dentistry') ? 'selected' : '' }}>Dentistry</option>
+                                                <option value="ENT" {{ (isset($doctor) && $doctor->department == 'ENT') ? 'selected' : '' }}>ENT (Ear, Nose & Throat)</option>
+                                                <option value="General Medicine" {{ (isset($doctor) && $doctor->department == 'General Medicine') ? 'selected' : '' }}>General Medicine</option>
+                                                <option value="Urology" {{ (isset($doctor) && $doctor->department == 'Urology') ? 'selected' : '' }}>Urology</option>
                                             </select>
                                             <div class="invalid-feedback" id="departmentError"></div>
                                         </div>
 
                                         <div class="col-md-6">
+                                            <label class="form-label">Gender</label>
+                                            <select class="form-select" name="gender" id="gender">
+                                                <option value="">Select Gender</option>
+                                                <option value="male" {{ (isset($doctor) && $doctor->gender == 'male') ? 'selected' : '' }}>Male</option>
+                                                <option value="female" {{ (isset($doctor) && $doctor->gender == 'female') ? 'selected' : '' }}>Female</option>
+                                                <option value="other" {{ (isset($doctor) && $doctor->gender == 'other') ? 'selected' : '' }}>Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Phone</label>
+                                            <input type="text" class="form-control" name="phone" id="phone" value="{{ $doctor->phone ?? '' }}">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Specialization</label>
+                                            <input type="text" class="form-control" name="specialization" id="specialization" value="{{ $doctor->specialization ?? '' }}">
+                                        </div>
                                             <label class="form-label">Specialization<span
                                                     class="text-danger">*</span></label>
 
                                             <select class="form-select pe-5" name="specialization" id="specialization">
                                                 <option value="">Select Specialization</option>
+                                                @if(isset($doctor) && $doctor->specialization)
+                                                    <option value="{{ $doctor->specialization }}" selected>{{ $doctor->specialization }}</option>
+                                                @endif
                                                 <option value="Cardiologist">Cardiologist</option>
                                                 <option value="Dermatologist">Dermatologist</option>
                                                 <option value="Neurologist">Neurologist</option>
