@@ -47,3 +47,5 @@ Route::get('/patient', [PatientController::class, 'dashboard'])->middleware('rol
     Route::post('/patient/upload-profile-image', [PatientController::class, 'uploadProfileImage'])->middleware('auth')->name('patient.upload.profile.image');
 Route::get('/admin', [AdminController::class, 'dashboard'])->middleware('role:admin')->name('admin.dashboard');
 Route::get('/staff', [StaffController::class, 'dashboard'])->middleware('role:staff')->name('staff.dashboard');
+
+
