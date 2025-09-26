@@ -293,7 +293,7 @@ $menu = [
                         <form class="settings-form mt-4" id="settingsForm" method="POST" action="{{ route('doctor.update.settings') }}">
                             @csrf
                             <div class="row mb-4">
-                                <div class="col-md-3 text-center">
+                                <div class="col-md-12 text-center">
                                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqZ2eRaYapG3k6qtp9yCk6rfNQa2QOFriHIo1398PWnEskq-TlQXWYXwamEROS3uquXTA&usqp=CAU"
                                         alt="Profile" class="settings-profile-pic mb-2" id="profileImage">
                                     <div>
@@ -305,14 +305,9 @@ $menu = [
                                             onclick="removeProfileImage()">Remove</button>
                                     </div>
                                 </div>
+                                
 
                                 <div class="col-md-9">
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label class="form-label">Type</label><br>
-                                            <input type="radio" name="type" value="fulltime" checked> Full Time
-                                            <input type="radio" name="type" value="parttime"> Part Time
-                                        </div>
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-md-6">
@@ -382,28 +377,26 @@ $menu = [
                                     </div>
                                     <div class="row mb-3">
                                     
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <label class="form-label">Phone</label>
                                             <input type="text" class="form-control" name="phone" id="phone" value="{{ $doctor->phone ?? '' }}">
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <label class="form-label">Email <span class="text-danger">*</span></label>
                                             <input type="email" class="form-control" name="email" id="email"
                                                 placeholder="someone@gmail.com" value="jahidur@hospital.com">
                                             <div class="invalid-feedback" id="emailError"></div>
                                         </div>
                                     </div>
-
-                                        
                                     <div class="row mb-3">
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <label class="form-label">Experience (Years) <span class="text-danger">*</span></label>
                                             <input type="number" class="form-control" name="experience" id="experience"
                                                 placeholder="e.g. 5" min="0" max="99">
                                             <div class="invalid-feedback" id="experienceError"></div>
                                         </div>
 
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <label class="form-label">Address <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="address" id="address"
                                                 placeholder="Enter Address"
