@@ -72,7 +72,7 @@ $menu = [
                     <?php if ($page === 'dashboard'): ?>
                     <div class="dashboard-full">
                         <h4>Hi</h4>
-                        <h2 class="doctor-name"><strong>Dr. {{ $doctor->name ?? Auth::user()->name }}</strong></h2>
+                        <h2 class="doctor-name">Dr. {{ $doctor->name ?? Auth::user()->name }}</h2>
                         <h4 class="welcome-note">Welcome To <span class="hospital-name">HospitalMS</span></h4>
                     </div>
                     <?php elseif ($page === 'appointment'): ?>
@@ -103,7 +103,7 @@ $menu = [
                         </div>
                     </div>
                     <?php elseif ($page === 'timeschedule'): ?>
-                    <h3>Dr. Jahidur Rahman</h3>
+                    <h3 class="doctor-name">Dr. {{ $doctor->name ?? Auth::user()->name }}</h3>
                     <h4 class="mt-3">Doctor Time Schedule</h4>
 
                     <div class="time-schedule-content mt-4">
@@ -288,7 +288,7 @@ $menu = [
                     </div>
                     <?php elseif ($page === 'settings'): ?>
                     <div class="settings-full">
-                        <h3>Dr. Jahidur Rahman</h3>
+                        <h3 class="doctor-name">Dr. {{ $doctor->name ?? Auth::user()->name }}</h3>
                         <h5 class="mt-3">Edit Profile</h5>
                         <form class="settings-form mt-4" id="settingsForm" method="POST" action="{{ route('doctor.update.settings') }}">
                             @csrf
@@ -322,11 +322,13 @@ $menu = [
                                             <div class="invalid-feedback" id="nameError"></div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label">Date of Birth <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="date" class="form-control" name="dob" id="dob"
-                                                value="{{ $doctor->dob ?? '' }}">
-                                            <div class="invalid-feedback" id="dobError"></div>
+                                            <label class="form-label">Gender</label>
+                                            <select class="form-select" name="gender" id="gender">
+                                                <option value="">Select Gender</option>
+                                                <option value="male" {{ (isset($doctor) && $doctor->gender == 'male') ? 'selected' : '' }}>Male</option>
+                                                <option value="female" {{ (isset($doctor) && $doctor->gender == 'female') ? 'selected' : '' }}>Female</option>
+                                                <option value="other" {{ (isset($doctor) && $doctor->gender == 'other') ? 'selected' : '' }}>Other</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -346,67 +348,62 @@ $menu = [
                                             </select>
                                             <div class="invalid-feedback" id="departmentError"></div>
                                         </div>
-
-                                        <div class="col-md-6">
-                                            <label class="form-label">Gender</label>
-                                            <select class="form-select" name="gender" id="gender">
-                                                <option value="">Select Gender</option>
-                                                <option value="male" {{ (isset($doctor) && $doctor->gender == 'male') ? 'selected' : '' }}>Male</option>
-                                                <option value="female" {{ (isset($doctor) && $doctor->gender == 'female') ? 'selected' : '' }}>Female</option>
-                                                <option value="other" {{ (isset($doctor) && $doctor->gender == 'other') ? 'selected' : '' }}>Other</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label class="form-label">Phone</label>
-                                            <input type="text" class="form-control" name="phone" id="phone" value="{{ $doctor->phone ?? '' }}">
-                                        </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Specialization</label>
-                                            <input type="text" class="form-control" name="specialization" id="specialization" value="{{ $doctor->specialization ?? '' }}">
-                                        </div>
-                                            <label class="form-label">Specialization<span
-                                                    class="text-danger">*</span></label>
-
                                             <select class="form-select pe-5" name="specialization" id="specialization">
                                                 <option value="">Select Specialization</option>
                                                 @if(isset($doctor) && $doctor->specialization)
                                                     <option value="{{ $doctor->specialization }}" selected>{{ $doctor->specialization }}</option>
                                                 @endif
-                                                <option value="Cardiologist">Cardiologist</option>
-                                                <option value="Dermatologist">Dermatologist</option>
-                                                <option value="Neurologist">Neurologist</option>
-                                                <option value="Orthopedic">Orthopedic</option>
-                                                <option value="Psychiatrist">Psychiatrist</option>
-                                                <option value="Dentist">Dentist</option>
-                                                <option value="General Physician">General Physician</option>
+
+                                                @php
+                                                    $specializations = [
+                                                        'Cardiologist',
+                                                        'Dermatologist',
+                                                        'Neurologist',
+                                                        'Orthopedic',
+                                                        'Psychiatrist',
+                                                        'Dentist',
+                                                        'General Physician'
+                                                    ];
+                                                @endphp
+
+                                                @foreach($specializations as $item)
+                                                    @if(!(isset($doctor) && $doctor->specialization == $item))
+                                                        <option value="{{ $item }}">{{ $item }}</option>
+                                                    @endif
+                                                @endforeach
                                             </select>
                                             <div class="invalid-feedback" id="specializationError"></div>
                                         </div>
+
+                                    </div>
+
                                     </div>
                                     <div class="row mb-3">
-                                        <div class="col-md-6">
+                                    
+                                        <div class="col-md-4">
+                                            <label class="form-label">Phone</label>
+                                            <input type="text" class="form-control" name="phone" id="phone" value="{{ $doctor->phone ?? '' }}">
+                                        </div>
+                                        <div class="col-md-4">
                                             <label class="form-label">Email <span class="text-danger">*</span></label>
                                             <input type="email" class="form-control" name="email" id="email"
                                                 placeholder="someone@gmail.com" value="jahidur@hospital.com">
                                             <div class="invalid-feedback" id="emailError"></div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label">Gender <span class="text-danger">*</span></label>
-                                            <input type="gender" class="form-control" name="gender" id="gender"
-                                                placeholder="" value="Male">
-                                            <div class="invalid-feedback" id="genderError"></div>
-                                        </div>
                                     </div>
+
+                                        
                                     <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label class="form-label">Mobile <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="mobile" id="mobile"
-                                                placeholder="+8801700000000" value="+8801700000000">
-                                            <div class="invalid-feedback" id="mobileError"></div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">Experience (Years) <span class="text-danger">*</span></label>
+                                            <input type="number" class="form-control" name="experience" id="experience"
+                                                placeholder="e.g. 5" min="0" max="99">
+                                            <div class="invalid-feedback" id="experienceError"></div>
                                         </div>
-                                        <div class="col-md-6">
+
+                                        <div class="col-md-4">
                                             <label class="form-label">Address <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="address" id="address"
                                                 placeholder="Enter Address"
@@ -427,7 +424,7 @@ $menu = [
                     </div>
                     <?php elseif ($page === 'addtips'): ?>
                     <div class="addtips-full">
-                        <h3>Dr. Jahidur Rahman</h3>
+                        <h3 class="doctor-name">Dr. {{ $doctor->name ?? Auth::user()->name }}</h3>
                         <h5 class="mt-3"><i class="fa fa-plus"></i> Add Health Tips</h5>
                         <form class="addtips-form mt-4" id="addtipsForm">
                             <div class="mb-3">
