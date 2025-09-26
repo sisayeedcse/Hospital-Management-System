@@ -19,6 +19,9 @@ class Doctor extends Model
         'experience',
         'schedule',
         'user_id',
+        'department',
+        'dob',
+        'address',
     ];
 
     protected $casts = [
