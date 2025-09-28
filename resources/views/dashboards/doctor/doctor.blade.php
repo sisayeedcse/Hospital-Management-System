@@ -292,6 +292,9 @@ $menu = [
                         <h5 class="mt-3">Edit Profile</h5>
                         <form class="settings-form mt-4" id="settingsForm" method="POST" action="{{ route('doctor.update.settings') }}">
                             @csrf
+                            <div id="settingsSuccess" class="alert alert-success d-none" role="alert">
+                                Settings updated successfully.
+                            </div>
                             <div class="row mb-4">
                                 <div class="col-md-12 text-center">
                                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqZ2eRaYapG3k6qtp9yCk6rfNQa2QOFriHIo1398PWnEskq-TlQXWYXwamEROS3uquXTA&usqp=CAU"
@@ -308,7 +311,23 @@ $menu = [
                                 
 
                                 <div class="col-md-9">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Date of Birth</label>
+                                            <input type="date" class="form-control" name="dob" id="dob" value="{{ $doctor->dob ?? '' }}">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Age</label>
+                                            <input type="number" class="form-control" name="age" id="age" min="0" max="120" value="{{ $doctor->age ?? '' }}">
+                                        </div>
                                     </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-12">
+                                            <label class="form-label">Schedule</label>
+                                            <input type="text" class="form-control" name="schedule" id="schedule" value="{{ $doctor->schedule ?? '' }}" placeholder="e.g. Mon-Fri 9am-5pm">
+                                        </div>
+                                    </div>
+                                    <!-- ...existing code... -->
                                     <div class="row mb-3">
                                         <div class="col-md-6">
                                             <label class="form-label">Name <span class="text-danger">*</span></label>
@@ -384,7 +403,7 @@ $menu = [
                                         <div class="col-md-6">
                                             <label class="form-label">Email <span class="text-danger">*</span></label>
                                             <input type="email" class="form-control" name="email" id="email"
-                                                placeholder="someone@gmail.com" value="jahidur@hospital.com">
+                                                placeholder="someone@gmail.com" value="{{ Auth::user()->email }}" readonly>
                                             <div class="invalid-feedback" id="emailError"></div>
                                         </div>
                                     </div>
@@ -392,7 +411,7 @@ $menu = [
                                         <div class="col-md-6">
                                             <label class="form-label">Experience (Years) <span class="text-danger">*</span></label>
                                             <input type="number" class="form-control" name="experience" id="experience"
-                                                placeholder="e.g. 5" min="0" max="99">
+                                                placeholder="e.g. 5" min="0" max="99" value="{{ $doctor->experience ?? '' }}">
                                             <div class="invalid-feedback" id="experienceError"></div>
                                         </div>
 
@@ -400,7 +419,7 @@ $menu = [
                                             <label class="form-label">Address <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="address" id="address"
                                                 placeholder="Enter Address"
-                                                value="123 Medical Center, Dhaka, Bangladesh">
+                                                value="{{ $doctor->address ?? '' }}">
                                             <div class="invalid-feedback" id="addressError"></div>
                                         </div>
                                     </div>
@@ -429,7 +448,50 @@ $menu = [
                                 </div>
                                 <div class="invalid-feedback" id="descriptionError"></div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Save</button>
+                                    <button type="button" class="btn btn-primary" id="saveSettingsBtn">Save</button>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('settingsForm');
+        const saveBtn = document.getElementById('saveSettingsBtn');
+        const successMsg = document.getElementById('settingsSuccess');
+        if (saveBtn) {
+            saveBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const formData = new FormData(form);
+                fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': form.querySelector('[name=_token]').value,
+                        'Accept': 'application/json',
+                    },
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success || data.message) {
+                        successMsg.classList.remove('d-none');
+                        successMsg.textContent = data.message || 'Settings updated successfully.';
+                        setTimeout(() => successMsg.classList.add('d-none'), 3000);
+                    } else if (data.errors) {
+                        // Show validation errors
+                        Object.keys(data.errors).forEach(function(key) {
+                            const errorDiv = document.getElementById(key + 'Error');
+                            if (errorDiv) {
+                                errorDiv.textContent = data.errors[key][0];
+                                errorDiv.style.display = 'block';
+                            }
+                        });
+                    }
+                })
+                .catch(() => {
+                    successMsg.classList.remove('d-none');
+                    successMsg.textContent = 'Error updating settings.';
+                    setTimeout(() => successMsg.classList.add('d-none'), 3000);
+                });
+            });
+        }
+    });
+    </script>
                             <button type="button" class="btn btn-outline-primary ms-2"
                                 onclick="resetHealthTipsForm()">Cancel</button>
                         </form>
